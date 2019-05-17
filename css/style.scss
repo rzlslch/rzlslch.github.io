@@ -1,0 +1,115 @@
+---
+---
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #ececec;
+    color: #404040;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+    a:-webkit-any-link {
+        text-decoration: none;
+        color: #404040;
+    }
+
+    nav, footer {
+        width: 100%;
+        padding: 0;
+        div {
+            width: 750px;
+            margin: 0 auto;
+        }
+
+        .header {
+            padding: 0;
+            padding-top: 30px;
+            font-size: 20px;
+            // background: red;
+            font-weight: bold;
+        }
+
+        .footer {
+            
+        }
+    }
+    section {
+        .center_page {
+            width: 750px;
+            margin: 20px auto;
+            background: #ececec;
+            padding: 60px;
+            padding-top: 20px;
+
+            .home {
+                .kisi-kisi {
+                    padding: 10px 10px;
+                    margin-bottom: 10px;
+                }
+
+                table {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    
+                    tr {
+                        margin: 0;
+                        padding: 0;
+
+                        td {
+                            margin: 0;
+                            padding: 0;
+                        }
+
+                        .year {
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+
+                        .title {
+                            width: 70%;
+                            font-size: 18px;
+                        }
+
+                        .date {
+                            color: #8f8f8f;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+
+            .post {
+                .title {
+                    font-family: 'Ubuntu', sans-serif;
+                    font-size: 32px;
+                    .date {
+                        font-size: 14px;
+                        color: #6b6a69;
+                    }
+                }
+
+                .content {
+                    padding-top: 20px;
+                    font-size: 16px;
+                }
+
+                a {
+                    color: #4EA3F8;
+                }
+            }
+        }
+    }
+
+    .center-image {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .highlighter-rouge {
+        color: #DC7060;
+    }
+}

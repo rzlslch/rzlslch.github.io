@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<script>
+    var quote = [
+        'Mengobati penyakit lupa adalah dengan menulis',
+        'Ikatlah ilmu dengan mengamalkannya',
+        'Ilmu adalah hewan buruan, dan menulis adalah ikatannya. Ikatlah buruan mu dengan tali yang kuat -yakni dengan cara menulisnya-',
+        'Ilmu yang dihapal akan pudar seiring berjalannya waktu. Ilmu yang ditulis akan kekal (selama github masih up)',
+        'Apabila engkau mendengar suatu ilmu, maka tulislah meskipun pada dinding'
+    ]
+
+    document.addEventListener('DOMContentLoaded', function() {
+        z = Math.floor(Math.random() * 5);
+        document.getElementsByClassName('quote')[0].innerHTML = quote[z];
+    })
+</script>
+<div class="home">
+    <div class="kisi-kisi">
+        <i class="quote">Mengobati penyakit lupa adalah dengan menulis</i>
+    </div>
+    <table>
+        <tbody>
+            {% for post in site.posts %}
+                {% unless post.next %}
+                <tr>
+                    <td class="year">
+                        {{ post.date | date: "%Y" }}
+                    </td>
+                </tr>
+                {% else %}
+                    {% capture year %}{{ post.date | date: "%Y" }}{% endcapture %}
+                    {% capture nyear %}{{ post.next.date | date: "%Y" }}{% endcapture %}
+                    {% if year != nyear %}
+                <tr>
+                        <td class="year">
+                            {{ post.date | date: "%Y" }}
+                        </td>
+                </tr>
+                    {% endif %}
+                {% endunless %}
+                <tr>
+                    <td class="title">
+                        <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
+                            <span>{{ post.title }}</span>
+                        </a>
+                    </td>
+                    <td class="date">
+                        <span>{{ post.date | date: "%b %d"}}</span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
