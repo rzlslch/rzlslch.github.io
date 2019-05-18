@@ -69,11 +69,18 @@ body {
                         }
 
                         .title {
-                            width: 70%;
+                            width: 60%;
                             font-size: 18px;
                         }
 
+                        .category {
+                            font-size: 14px;
+                            color: #8f8f8f;
+                            // font-weight: bold;
+                        }
+
                         .date {
+                            width: 30%;
                             color: #8f8f8f;
                             font-weight: bold;
                             text-transform: uppercase;
@@ -111,5 +118,39 @@ body {
 
     .highlighter-rouge {
         color: #DC7060;
+    }
+
+    .highlight {
+        background: #525252;
+        margin: 0;
+        padding: 10px 20px;
+        border-radius: 3px;
+        color: #f1f1f1;
+    }
+
+    .language-python {
+        .n {
+            color: #B3C5FB;
+        }
+
+        .nf {
+            color: #FF7C7C;
+        }
+
+        .k {
+            color: #F9D4F3;
+        }
+
+        .bp {
+            color: #F7F5BB;
+        }
+
+        .s {
+            color: #DAF5D3;
+        }
+
+        .nb {
+            color: #ADFFC5;
+        }
     }
 }
