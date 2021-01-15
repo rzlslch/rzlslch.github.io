@@ -2,7 +2,7 @@
 layout: post
 title: 3d printed mechanical keyboard
 date: 2019-05-16 01:45 +0700
-permalink: kbd/3d-printed-mechanical-keyboard
+permalink: /3d-printed-mechanical-keyboard
 categories: kbd
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh

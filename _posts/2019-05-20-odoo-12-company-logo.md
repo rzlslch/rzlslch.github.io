@@ -2,7 +2,7 @@
 layout: post
 title: 'odoo 12: company logo'
 date: 2019-05-20 04:47 +0700
-permalink: code/odoo-12-company-logo
+permalink: /odoo-12-company-logo
 categories: code
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh

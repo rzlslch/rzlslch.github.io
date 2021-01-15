@@ -2,7 +2,7 @@
 layout: post
 title: custom keyboard part 1
 date: 2021-01-16 00:07 +0700
-permalink: kbd/custom-keyboard-pt-1
+permalink: /custom-keyboard-pt-1
 categories: kbd
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh
