@@ -62,6 +62,10 @@ Masalah yang ketiga adalah, jalur pcb custom nya ikutan rusak. Tapi nda masalah 
 
 Saya harus desolder semua dioda dari pcb yang rusak, yang nantinya bakal disolder lagi ke pcb lain yang masih bener. desolder 61 dioda, terus solder ulang ke pcb baru. 122 kali. Capek.
 
+Karena ada spasi antara pcb dan controller, dan saya pengen case yang nda terlalu tinggi, bagian belakangnya dibuat bolong untuk mengakomodasi board mcu nya biar ga kepentok. Setiap beberapa bulan sekali kudu dibersihin pake alkohol takutnya kena korosi.
+
+![3d print case standart 60%](/assets/img/custom-keyboard-backside.jpg){:width="100%" .center-image}
+
 Setelah semua proses dilalui, selesai juga keyboard ini. MCU juga uda di flash ke settingan sebelumnya, tambah beberapa modifikasi. Case nya juga langsung apa ada nya, ga pake amplas2 atau cat2 lagi, soalnya saya udah capek. Dan hasilnya cukup memuaskan
 
 ![3d print case standart 60%](/assets/img/custom-keyboard-05.jpg){:width="100%" .center-image}
