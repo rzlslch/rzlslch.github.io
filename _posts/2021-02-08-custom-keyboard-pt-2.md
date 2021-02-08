@@ -28,7 +28,7 @@ Yang kedua, aga panjang ceritanya. Karena ga bisa dipasang ke case nya, dan wakt
 
 Untuk sementara, masi bisa pake keyboard, dan akhirnya saya desain lagi case nya yang emang ada beberapa revisi untuk masalah baut dan spasing. Pake keyboard temporary ini, bisa lah buat ngoprasikan **Blender**.
 
-![model 3d](/assets/img/blender29new_keyboard_01.jpg){:width="100%" .center-image}
+![model 3d](/assets/img/blender29new_keyboard_01.JPG){:width="100%" .center-image}
 
 Setelah jadi, export jadi stl, kirim lah ke vendor untuk di print. Print nya [disini][tokped-cinta-print3d]
 
