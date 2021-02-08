@@ -4,6 +4,7 @@ title: 'odoo 12: custom res.config.settings'
 date: 2019-05-17 17:16 +0700
 permalink: /odoo-12-custom-res-config-settings
 categories: code
+comments: true
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh
 

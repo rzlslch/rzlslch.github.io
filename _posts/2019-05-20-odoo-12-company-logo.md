@@ -4,6 +4,7 @@ title: 'odoo 12: company logo'
 date: 2019-05-20 04:47 +0700
 permalink: /odoo-12-company-logo
 categories: code
+comments: true
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh
 

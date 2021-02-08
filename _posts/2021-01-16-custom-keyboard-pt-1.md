@@ -1,9 +1,10 @@
 ---
 layout: post
 title: custom keyboard part 1
-date: 2021-01-16 00:07 +0700
+date: 2021-01-15 17:07 +0700
 permalink: /custom-keyboard-pt-1
 categories: kbd
+comments: true
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh
 
@@ -111,9 +112,11 @@ Apakah ini endgame? Tentu saja bukan. Tapi paling enggak keyboard ini bakalan sa
 
 <br>
 
-Baiklah sekian dulu field report custom keyboard saya, untuk part berikutnya akan saya bahas proses pengecatan dan solder menyolder.
+Baiklah sekian dulu field report custom keyboard saya, untuk part berikutnya akan saya bahas ~~proses pengecatan dan solder menyolder~~ kesalahan dan kegagalan bikin keyboard (yang akhirnya jadi).
 
 <br>
 <br>
 
 Wassalamu'alaikum Warrahmatullah Wabarakatuh.
+
+[Part 2]({% post_url 2021-02-08-custom-keyboard-pt-2 %})
