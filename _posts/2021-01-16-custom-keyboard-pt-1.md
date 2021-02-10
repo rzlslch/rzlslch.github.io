@@ -20,7 +20,7 @@ Berikut ini penampakannya.
 
 Bahannya menggunakan PLA, cukup halus dan kokoh ya. Ini saya ngeprint nya pesen, pake infill 50% biar agak kokoh, tapi ternyata malah lebih kokoh daripada yang saya bayangkan sebelumnya.
 
-Pesan 3d print nya [disini][tokped-roboku], rekomended!
+Pesan 3d print nya [disini][tokped-roboku]
 
 [tokped-roboku]:https://www.tokopedia.com/roboku/jasa-cetak-3d-print-pla
 
