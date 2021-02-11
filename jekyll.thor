@@ -20,6 +20,7 @@ class Jekyll < Thor
       post.puts "permalink: /#{title.to_url}"
       post.puts "date: #{date} #{time} +0700"
       post.puts "categories: "
+      post.puts "comments: true"
       post.puts "---"
       post.puts "Assalamu'alaikum Warahmatullah Wabarakatuh"
       post.puts ""
