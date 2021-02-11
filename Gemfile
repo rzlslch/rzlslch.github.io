@@ -30,3 +30,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
 # additional
 gem 'jekyll-compose', group: [:jekyll_plugins]
+
+# generator
+gem 'thor'
+gem 'stringex'
