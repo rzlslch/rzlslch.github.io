@@ -4,6 +4,7 @@ title: "javascript: nungguin loop yang pake nungguin promise"
 permalink: /javascript-nungguin-loop-yang-pake-nungguin-promise
 date: 2021-02-11 21:44 +0700
 categories: code
+comments: true
 ---
 Assalamu'alaikum Warrahmatullah Wabarakatuh
 
