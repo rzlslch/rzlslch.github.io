@@ -16,7 +16,7 @@ Saya adalah seorang yang bergelut di bidang Teknologi Informasi, dengan fokus ut
 
 #### Kemampuan
 
-- Linux Server Administration. Saya bertanggungjawab untuk pemeliharaan server yang menggunakan linux dalam keseharian.
+- Linux Server Administration. Saya bertanggungjawab dalam hal pemeliharaan server yang menggunakan linux dalam keseharian.
 - Backend Tech Stack :
     - NodeJS. Untuk bahasa pemrograman, pengalaman saya paling banyak ada disini.
     - PostgreSQL. untuk relational database, dalam keseharian, hampir semua proyek yang saya kerjakan menggunakan Postgre sebagai database nya.
