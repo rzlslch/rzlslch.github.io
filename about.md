@@ -1,18 +1,13 @@
 ---
-layout: page
-title: About
+layout: default
+title: Tentang Blog ini
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Blog ini dibuat sebagai log kegiatan dan sampah-sampah otak saya, yang mana sebenarnya saya sendiri males untuk nulis.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Saya memutuskan untuk membangun blog ini tanpa tema, hanya dengan html dan sedikit css untuk layout. Tujuannya adalah untuk berfokus pada konten, dan membuat blog ini lebih ringan untuk diakses. Tanpa javascript, tanpa dekorasi, murni konten. Ditambah dengan adanya paradigma [Brutalist Web Design][brutalist] yang mendukung, jadilah blog ini.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+[brutalist]:https://brutalist-web.design/
 
-
-[jekyll-organization]: https://github.com/jekyll
+Padahal ya emang karena saya ga bisa ndesain front end aja sih.. (males juga)

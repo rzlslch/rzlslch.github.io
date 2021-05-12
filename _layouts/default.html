@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <title>
             {% if page.title %}
                 {{ page.title }}
@@ -13,9 +14,12 @@
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     </head>
     <body>
+        {% if page.layout != 'post' %}
         <nav>
             {% include header.html %}
         </nav>
+        {% else %}
+        {% endif %}
         <section>
             <div class="center_page">
                 {{ content }}
