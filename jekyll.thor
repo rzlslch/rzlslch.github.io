@@ -25,6 +25,13 @@ class Jekyll < Thor
       post.puts "Assalamu'alaikum Warahmatullah Wabarakatuh"
       post.puts ""
       post.puts "Bismillahirrahmanirrahim"
+      post.puts ""
+      post.puts ""
+      post.puts ""
+      post.puts "<br>"
+      post.puts "<br>"
+      post.puts ""
+      post.puts "Wassalamu'alaikum Warrahmatullah Wabarakatuh."
     end
 
     system(options[:editor], filename)
