@@ -3,7 +3,7 @@ layout: post
 title: "Arduino log 4"
 permalink: /arduino-log-4
 date: 2021-07-22 18:57 +0700
-categories: 
+categories: code
 comments: true
 ---
 Assalamu'alaikum Warahmatullah Wabarakatuh
