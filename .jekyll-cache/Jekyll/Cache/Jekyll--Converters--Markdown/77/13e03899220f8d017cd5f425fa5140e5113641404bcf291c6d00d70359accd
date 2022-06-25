@@ -1,0 +1,12 @@
+I"‰<p>Assalamuâ€™alaikum Warrahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Pada Odoo 12, untuk menambahkan <code class="language-plaintext highlighter-rouge">image</code> logo pada header tidak lagi menggunakan</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;img</span> <span class="na">t-if=</span><span class="s">"company.logo"</span> <span class="na">t-att-src=</span><span class="s">"'data:image/png;base64,%s' %company.logo"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>melainkan dengan menggunakan</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;img</span> <span class="na">t-if=</span><span class="s">"company.logo"</span> <span class="na">t-att-src=</span><span class="s">"image_date_uri(company.logo)"</span><span class="nt">/&gt;</span></code></pre></figure>
+:ET

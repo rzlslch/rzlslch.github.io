@@ -1,0 +1,34 @@
+I"V	<p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Sudah setahun lebih sejak terakhir kali saya build keyboard. Dan hampir setahun saya ga pake keyboard mechanical. Jadi di tahun 2022 ini, saya memutuskan untuk build keyboard baru.</p>
+
+<p>Jadi gini ceritanya, keyboard saya yang biru kemarin, pro micro nya dirusak sama bocil, saya males mbenerin, udah.</p>
+
+<p>Untuk keyboard yang sekarang, saya tetep ndesain sendiri. Ada beberapa yang berbeda di keyboard kali ini.</p>
+<ul>
+  <li>Layout nya saya pilih WKL.</li>
+  <li>Dan saya desain untuk pengunci case nya saya pake model snap-on, bukan baut dan/atau mur.</li>
+  <li>controller nya nrfmicro, yang berarti bisa wireless out of the box</li>
+</ul>
+
+<p><img src="/assets/img/nrfmicro.jpg" alt="nrfmicro" width="100%" class="center-image" /></p>
+
+<p>Saya memutuskan untuk pakai snap-on bukan mur/baut karena di keyboard yang sebelumnya, saya menggunakan threaded insert m2, dan ketika masang malah melenceng semua. Emang stats dex saya rendah banget. Maka, di build yang kedua ini, saya memutuskan untuk memakai mekanisme snap-on saja. Biar semua mesin yang atur. Selain itu juga ga bingung misal mur nya hilang atau ga pas.</p>
+
+<p>Buka tutup case nya juga jadi lebih gampang. Ga perlu nyari obeng dulu.</p>
+
+<p>Case keyboard saya kali ini ada 3 bagian, lebih 1 dari yang sebelumnya yang cuman 2 bagian. Ada top case, bottom case, sama plate. plate nya sendiri saya buat tebalnya 3mm karena saya ga suka plate yang terlalu flex. Meskipun 50% kekakuannya karena kekunci sama pcb nya. (karena disolder)</p>
+
+<p>Untuk controller nya sendiri saya pake nrfmicro. Kebetulan tahun lalu waktu saya lagi seneng-senengnya riset arduino, saya nemu ada yang jual nrfmicro. Langsung saya stop riset saya. Ngapain riset kalo udah ada solusi. Jadi nrfmicro ini umurnya udah hampir setahun juga.</p>
+
+<p>Untuk desain pcb, ya begitulah ya. Standar. Pokoknya bisa dibuat mounting pro-micro dan derivasi nya. Nrfmicro ini juga footprint nya plek sama kayak pro micro, cuman ketambahan 2 bolongan diatas sendiri buat baterei. Jadi pcb ini juga bisa dipake buat yang non-wireless pake pro micro misal nanti pengen build lagi.</p>
+
+<p>Ada 2 firmware yang jadi pilihan saya untuk nrfmicro ini. Yang pertama qmk branch nrf52, yang kedua zmk.</p>
+
+<p><br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+:ET

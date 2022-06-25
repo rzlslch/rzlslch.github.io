@@ -3,6 +3,7 @@ layout: default
 comments: true
 ---
 <div class="post">
+    {% include header.html %}
     <div class="title">
         {{ page.title }}
         <div class="date">{{ page.date | date: "%m/%d/%Y"}} - {{ page.categories }}</div>

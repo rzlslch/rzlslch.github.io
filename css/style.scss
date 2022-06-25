@@ -37,10 +37,13 @@ body {
     .header {
         padding-bottom: 0.5rem;
         border-bottom: 1px solid;
+        display: flex;
 
         div {
             width: 25%;
-            display: inline-flex;
+            // display: inline-flex;
+            display: block;
+            text-align: center;
         }
     }
 
@@ -52,9 +55,9 @@ body {
     .post {
         .title {
             font-size: 1.6rem;
-            border-top: 1px solid;
+            // border-top: 1px solid;
             border-bottom: 1px solid;
-            padding-top: 0.5rem;
+            padding-top: 1rem;
             padding-bottom: 0.5rem;
             line-height: 110%;
 
@@ -129,7 +132,7 @@ body {
         .post {
             .title {
                 font-size: 2.4rem;
-                padding-top: 0.75rem;
+                padding-top: 1.25rem;
                 padding-bottom: 0.75rem;
                     
                 .date {

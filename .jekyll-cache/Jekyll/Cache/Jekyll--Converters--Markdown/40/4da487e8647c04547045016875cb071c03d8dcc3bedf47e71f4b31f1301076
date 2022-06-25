@@ -1,0 +1,63 @@
+I"�<p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Jadi gini. Controller untuk transmitter nya saya ganti pake arduino micro (merk robotdyn) biar pin nya agak banyakan. Oke bisa jalan. Dan saya nyoba pake rotary encoder buat ngasih input. Karena kalo mau buat matrix switch yang agak banyakan ternyata ribet wiring nya di breadboard. Dan kodingan buat rotary encoder ini sebenernya simple sih. Ga perlu pake cegatan kalo cuman pengen muter kanan kiri, cuman ya aga <em>mbleyot</em> dikit kalo diputer2 satu step satu step.</p>
+
+<p>Kodingan nya kayak gini buat nangkep input puteran rotary encoder nya.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">...</span>
+<span class="kt">int</span> <span class="n">LastState</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">State</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">TR</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">TL</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span> <span class="c1">// pin 1 ke A0</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span> <span class="c1">// pin 2 ke A1</span>
+
+    <span class="n">LastState</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span> <span class="c1">// set ke salah satu pin buat acuan</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+
+    <span class="n">State</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">State</span> <span class="o">!=</span> <span class="n">LastState</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span> <span class="o">!=</span> <span class="n">State</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">TR</span> <span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">TR</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">TR</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">TR</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">...</span> <span class="c1">// masukkan kode untuk putaran kanan</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">TL</span> <span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">TL</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">TL</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">TL</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="p">...</span> <span class="c1">// masukkan kode untuk putaran kiri</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">LastState</span> <span class="o">=</span> <span class="n">State</span><span class="p">;</span>
+    
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Ini udah oke.</p>
+
+<p>Tapi problem nya adalah, kalo rangkaian ini ditinggal idle selama beberapa waktu, maka koneksi nya putus. Udah putus gitu aja. Ketika di puter2, dikasih inputan, ga masuk sama sekali. Ini masih problem yang harus saya pecahkan. Dan masih belum nemu pemecahannya.</p>
+
+<p>Yaudah sih. Lagi bete saya.</p>
+
+<p><br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+:ET

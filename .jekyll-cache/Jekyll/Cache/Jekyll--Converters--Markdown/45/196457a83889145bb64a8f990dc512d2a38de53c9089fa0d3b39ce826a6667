@@ -1,0 +1,76 @@
+I"v%<p>Assalamu’alaikum Warrahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Jadi begini, kemarin waktu ngoding kerjaan, saya nemu trik yang lumayan asik tentang loop yang digabungin sama <code class="language-plaintext highlighter-rouge">Promise</code>. Seperti yang kita tahu, <code class="language-plaintext highlighter-rouge">Promise</code> kan buat nungguin hasil ya. Kira-kira seperti itu lah.</p>
+
+<p>Misal seperti self running function yang kayak ini</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>                  <span class="c1">// fungsi buat nunggu </span>
+            <span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">hasil yang ditunggu</span><span class="dl">'</span><span class="p">)</span>  <span class="c1">// selama 1 detik misal</span>
+        <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Jalankan ini kalo hasilnya udah keluar</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`ini </span><span class="p">${</span><span class="nx">result</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="p">})</span>
+<span class="p">})()</span></code></pre></figure>
+
+<p>Nah, sudah bisa ngerti kan gunanya <code class="language-plaintext highlighter-rouge">Promise</code>?</p>
+
+<p>Lalu ada suatu kasus. Dimana ada lebih dari satu <code class="language-plaintext highlighter-rouge">Promise</code>, dan hasil dari semua <code class="language-plaintext highlighter-rouge">Promise</code> tersebut harus ada dulu sebelum menjalankan fungsi yang lain. Misal gini</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise3</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise4</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">jalankan ini ketika semua promise selesai</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">})()</span></code></pre></figure>
+
+<p>Biasanya, kasus seperti ini mesti manggil <code class="language-plaintext highlighter-rouge">async/await</code> untuk menghindari callback hell yang terjadi di dalam <code class="language-plaintext highlighter-rouge">.then</code> wkwkwkwk.. Tapi nampaknya saya lupa kalo ada <code class="language-plaintext highlighter-rouge">Promise.all</code>.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="k">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise3</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">promise4</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">...</span> <span class="p">);</span>
+
+    <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span> <span class="nx">promise2</span><span class="p">,</span> <span class="nx">promise3</span><span class="p">,</span> <span class="nx">promise4</span><span class="p">]);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">jalankan ini ketika semua promise selesai</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">})()</span></code></pre></figure>
+
+<p>Kelebihan <code class="language-plaintext highlighter-rouge">Promise.all</code> sendiri ada pada error handling nya. Kalo pake banyak <code class="language-plaintext highlighter-rouge">await</code>, error bakal dimunculkan ketika <code class="language-plaintext highlighter-rouge">Promise</code> yang berjajar di return semua. Sedangkan pada <code class="language-plaintext highlighter-rouge">Promise.all</code>, ketika ada salah satu yang error, saat itu lah bakal di return error nya dan berhenti sampai sana. Dan ini mantap kali kalo dipake di dalem loop.</p>
+
+<p>Misal</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span> <span class="p">...</span> <span class="p">]</span> <span class="c1">// misal ini data array buat ngeloop</span>
+
+<span class="kd">function</span> <span class="nx">promise</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// ini promise yang mau dipanggil</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="p">...</span> <span class="c1">// code promise nya misal</span>
+        <span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="p">(</span><span class="k">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">await</span> <span class="nx">promise</span><span class="p">();</span>
+    <span class="p">}))</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">sudah selesai semua</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">})()</span></code></pre></figure>
+
+<p>Jadi untuk nungguin loop yang di dalem nya ada promise yang juga harus ditungguin, bisa pake cara seperti diatas. Sebenernya masih banyak cara lain, misal pake <code class="language-plaintext highlighter-rouge">asyncForEach</code> atau yang lain, tapi menurut saya pake <code class="language-plaintext highlighter-rouge">Promise.all</code> enak aja dipake. Selain itu error handling nya juga ga nunggu lama-lama, nda harus semua <code class="language-plaintext highlighter-rouge">Promise</code> selesai dulu.</p>
+
+<p>Konklusi nya, pakailah <code class="language-plaintext highlighter-rouge">Promise.all</code>. Udah sih itu aja.</p>
+
+<p><br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+:ET

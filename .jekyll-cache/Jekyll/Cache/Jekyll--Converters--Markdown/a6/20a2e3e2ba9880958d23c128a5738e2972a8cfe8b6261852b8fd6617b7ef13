@@ -1,0 +1,90 @@
+I"<p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Jadi yang kemaren ada problem soal koneksi keputus tiba-tiba, ternyata masalah nya ada di perangkat nya.</p>
+<ol>
+  <li>Kabel nya ga bener-bener nancep rapet ke port, agak longgar gitu.</li>
+  <li>Batere nya uda mau habis. Problem ini karena saya konekin power nya ke port VIN, dimana itu voltase masuknya di range 7-12V, sedangkan batere saya cuman 3.7V (2.2-4.2V), jadinya ya kekuras cepet banget. Sekarang sih saya masukin ke 5V, paling enggak bisa lebih hemat daya dikit.</li>
+</ol>
+
+<p>Dan kemaren lalu ada problem yang menarik sekali (nulisnya baru sekarang setelah problem solved agak lama juga). Kebetulan saya pake arduino micro (Robotdyn atmega32u4-M), tapi salah ngeburn bootloader arduino leonardo ke dalemnya. Alhasil board nya ke detect sebagai arduino leonardo (pro micro). Dan ga bisa diapa-apain. Saya burn ulang bootloader nya pun ga bisa.</p>
+
+<hr />
+
+<p>Sedikit curhat. Skip aja ga penting ini.</p>
+
+<p>Jadi karena saya minim sekali pengalaman dan pengetahuan di bidang ini, sekedar googling pun ga bisa mengatasi problem ini. Akhirnya saya memutuskan untuk bertanya ke komunitas arduino.</p>
+
+<p>Gini, saya itu ga begitu suka berinteraksi sama komunitas kalo ga bener-bener kepepet. Pengalaman saya bertanya di komunitas itu kebanyakan tidak menghasilkan solusi soalnya. Memang, di komunitas biasanya banyak berkumpul orang-orang yang ahli di bidangnya. Tapi kalo berdasarkan pengalaman saya, sehebat-hebat nya seseorang yang ahli dalam bidang tertentu, akan susah untuk memecahkan permasalahan orang lain sekedar lewat postingan di komunitas online. Kenapa? ada beberapa faktor yang mempengaruhi.</p>
+<ol>
+  <li>Susah diagnosis. Karena ini berhubungan dengan perangkat keras, susah juga untuk mendapatkan informasi-informasi yang membantu untuk diagnosis permasalahannya.</li>
+  <li>Post tenggelam. Karena komunitas isinya orang banyak, post nya ga cuman post kita kan. Kebanyakan post bakalan tenggelam dan jarang dilihat oleh orang-orang yang ahli. Jika memang kebetulan dilihat orang yang ahli, biasanya kembali ke poin nomor 1.</li>
+  <li>Time value. Kalo emang ga lagi nganggur sebenernya males juga lo problem solving masalah orang lain yang ga jelas juga gimana dan kenapa terjadinya.</li>
+  <li>Dan masih banyak lagi.</li>
+</ol>
+
+<p>Jadi apa yang terjadi? Saya post pertanyaan saya.</p>
+
+<p>“Arduino Micro salah burn bootloader blablabla”.</p>
+
+<p>Ada yang komen. “Burn bootloader ulang”</p>
+
+<p>Saya jawab. “Ga bisa. Device nya ga respon. error log nya seperti ini blablabla”</p>
+
+<p>Dibales. “Pake «<em>insert another scenic hardware name</em>» uda dicoba?”</p>
+
+<p>Saya jawab lagi. “Ga punya gan”</p>
+
+<p>Well, saya penasaran dong apa itu yang dimaksud. Setelah saya cari-cari, ternyata itu alat ntah gimana ngoprasiin nya, entah fungsi nya buat apa, dan harganya mahal banget. Harganya nih ya, bisa buat beli microcontroller yang saya rusakin ini dapet 2. Lah, daripada beli gituan yang make nya aja ga tau gimana dan buat apa, apa ga mending beli lagi aja microcontroller nya. Gausah dibenerin dah gapapa, toh udah dapet baru, ya ga? Zzzzz</p>
+
+<p>Terus ada yang komen lagi. “«<em>ngequote percobaan saya burn bootloader</em>» bisa di foto device programmer nya?”</p>
+
+<p>Ya saya bales. “Saya ga pake device gan, pake arduino IDE”</p>
+
+<p>Dianya bales. “Sudah kuduga” Udah. gitu doang.</p>
+
+<p>Apanya yang kau duga hei kisanak? Kemunculan Sunda Nusantara?</p>
+
+<p>Terus apa yang saya lakukan? Baca-baca lagi. Banyak baca-baca-baca, akhirnya bisa ngesolve problem sendiri. Nanti cara solve nya saya tempel di bawah. Dan dengan jurus baru yang saya dapetin dari baca-baca, arduino pro micro saya yang dahulu saya kira ngebrick, gegara ga bisa diapa-apain udah, bisa sembuh dengan jurus yang sama. Alhamdulillah sekali.</p>
+
+<p>Kebanyakan ya kayak gini pengalaman saya berinteraksi di komunitas. Bukan mendiskreditkan komunitas nya, tapi untuk orang kayak saya, berinteraksi di komunitas itu, apalagi bertanya pertanyaan yang saya mentok ga tau jawabannya, sebenernya itu cuman pembuka jalan lain untuk menemukan pemecahan masalahnya secara mandiri. Dengan kata lain sia-sia, gak guna. Ya karena hampir semua respon nya kayak gitu. Karena memang kebanyakan problem yang saya hadapi itu bener-bener ra umum.</p>
+
+<p>Tapi, apakah saya menghindari komunitas? Oh tentu tidak. Justru saya bergabung di banyak komunitas sebagai silent reader. Karena saya menemukan manfaat yang jauh lebih besar daripada berinteraksi di komunitas, yaitu ilmu. Tutorial-tutorial, Diskusi-diskusi, perdebatan, saya suka bacain hal-hal seperti itu di komunitas. Biasanya pengetahuan yang didapet sehabis baca gituan bisa diinkorporasikan ke kegiatan yang sedang saya lakukan. Oh ternyata bisa seperti itu to, gimana kalo tak <em>apply</em> ke project ini, atau itu. Gitu.</p>
+
+<p>End of curhat.</p>
+
+<hr />
+
+<p>Kebetulan saya punya arduino nano, saya pake arduino nano sebagai programmer bootloader untuk board saya yang lain.</p>
+<ol>
+  <li>Siapkan (sambungkan ke pc) arduino nano nya (pake arduino lain sebenernya bisa).</li>
+  <li>Buka Arduino IDE</li>
+  <li>Klik File -&gt; Example -&gt; 11.ArduinoISP -&gt; upload ke arduino nano yang uda disiapkan tadi.</li>
+  <li>Konekkan pin dari arduino nano ke arduino target yang mau di burn bootloader.
+    <ul>
+      <li>SCK (nano) -&gt; SCK (target)</li>
+      <li>MOSI (nano, D11) -&gt; MOSI (target)</li>
+      <li>MISO (nano, D12) -&gt; MISO (target)</li>
+      <li>5V (nano) -&gt; 5V (target)</li>
+      <li>GND -&gt; GND</li>
+      <li>D10 (nano) -&gt; RST (target)</li>
+    </ul>
+  </li>
+  <li>Ambil bootloader yang mau di burn dari <a href="https://github.com/arduino/ArduinoCore-avr">sini</a>. Untuk ini saya pake Caterina-Micro.hex</li>
+  <li>Jalankan avrdude dengan perintah ini <code class="language-plaintext highlighter-rouge">avrdude.exe -P COM19 -b 19200 -c avrisp -p m32u4 -v -e -U flash:w:Caterina-Micro.hex</code> dimana COM19 itu port dari arduino nano yang saya pake.</li>
+  <li>profit.</li>
+</ol>
+
+<p>Saya ga tau cara ini bisa dipake ke board apa aja, tapi ini saya pake ke board yang beda chip nya pun bisa. Jadi harusnya bisa untuk semua. Cuman yang tegangan sama clock nya beda, itu belom nyoba. Gatau apa 5V bisa dihubungkan ke 3.3V atau enggak, kita tunggu aja tanggal mainnya.</p>
+
+<p>Jadi untuk sementara ini saya masih riset pake board lain, inceran saya adalah arduino pro mini 3.3V supaya daya yang dipakai jadi lebih sedikit dan batere jadi lebih awet. Tapi komponen nya belum kebeli. Nunggu gajian bulan depan. Saya ga mau kalo hobi bisa sampai mengganggu cashflow (meski komponen harganya ga seberapa, tapi kalo terus-terus an ga dikontrol bisa-bisa ga sadar udah habis banyak gitu aja).</p>
+
+<p>Jadi sekian dulu field report kali ini.</p>
+
+<p><br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+
+:ET

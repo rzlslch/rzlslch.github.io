@@ -83,3 +83,4 @@ Baiklah sekian dulu field report saya, mungkin ada part berikutnya yang akan mem
 Wassalamu'alaikum Warrahmatullah Wabarakatuh.
 
 [Part 1]({% post_url 2021-01-16-custom-keyboard-pt-1 %})
+[Part 3]({% post_url 2022-06-25-custom-keyboard-pt-3 %})

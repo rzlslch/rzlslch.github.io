@@ -7,10 +7,11 @@ permalink: /resume/
 Saya adalah seorang yang bergelut di bidang Teknologi Informasi, dengan fokus utama kepada Teknologi Belakang Layar (Backend).
 
 #### Proyek
-
+- Leapverse [pranala][leap]
 - Flits.id [pranala][flits]
 - Customer Portal Niaga Logistic [pranala][niaga]
 
+[leap]:https://leapverse.leapsurabaya.sch.id/
 [flits]:https://flits.id/
 [niaga]:http://myniaga.niaga-logistics.com/login
 

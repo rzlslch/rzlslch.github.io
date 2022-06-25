@@ -120,3 +120,4 @@ Baiklah sekian dulu field report custom keyboard saya, untuk part berikutnya aka
 Wassalamu'alaikum Warrahmatullah Wabarakatuh.
 
 [Part 2]({% post_url 2021-02-08-custom-keyboard-pt-2 %})
+[Part 3]({% post_url 2022-06-25-custom-keyboard-pt-3 %})
