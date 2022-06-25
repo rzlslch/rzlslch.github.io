@@ -13,7 +13,7 @@ Saya adalah seorang yang bergelut di bidang Teknologi Informasi, dengan fokus ut
 
 [leap]:https://leapverse.leapsurabaya.sch.id/
 [flits]:https://flits.id/
-[niaga]:http://myniaga.niaga-logistics.com/login
+[niaga]:http://app.niaga-logistics.com/login
 
 #### Kemampuan
 
