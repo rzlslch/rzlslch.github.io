@@ -1,0 +1,39 @@
+I"A<p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD.</p>
+
+<p><img src="/assets/img/keyboar_wkl.jpg" alt="keyboard wkl" width="100%" class="center-image" /></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">col</span><span class="o">-</span><span class="n">gpios</span>
+        <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">10</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">16</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">14</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">15</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">0</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">1</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">2</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+
+<span class="n">row</span><span class="o">-</span><span class="n">gpios</span>
+        <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">1</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">9</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">8</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">7</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">6</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">5</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">4</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">3</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">2</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">0</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span></code></pre></figure>
+
+<p><img src="/assets/img/zmk_build.JPG" alt="zmk-build" width="100%" /></p>
+
+<p><img src="/assets/img/zmk_firmware.JPG" alt="zmk-firmware" /></p>
+
+<p><img src="/assets/img/bootloader.JPG" alt="bootloader" class="center-image" />
+<br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+:ET

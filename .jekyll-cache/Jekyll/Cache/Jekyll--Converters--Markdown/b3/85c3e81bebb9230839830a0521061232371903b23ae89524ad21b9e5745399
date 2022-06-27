@@ -1,0 +1,86 @@
+I"[$<p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
+
+<p>Bismillahirrahmanirrahim</p>
+
+<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD.</p>
+
+<p><img src="/assets/img/keyboar_wkl.jpg" alt="keyboard wkl" width="100%" class="center-image" /></p>
+
+<p><br />
+<br /></p>
+
+<hr />
+
+<p>Oke langsung saja.</p>
+
+<p>Di dokumentasi nya sendiri, zmk ini cukup jelas dan to the point. Jadi saya langsung ikuti aja. Mulai dari setup sampek bikin shield sendiri.</p>
+
+<p>Disini masalah mulai muncul.</p>
+
+<p>Kalo dari dokumentasi nya, tutorial seperti ini.</p>
+
+<p><img src="/assets/img/tutorial_1.JPG" alt="tutorial_1" width="100%" class="center-image" />
+<img src="/assets/img/tutorial_2.JPG" alt="tutorial_2" width="100%" class="center-image" /></p>
+
+<p>Yasudah ikutin aja kan? Tapi ternyata setelah dibuild, error. Saya ga tampilin error nya disini soalnya waktu kemaren build itu ga sempet dokumentasi.</p>
+
+<p>Bingung kan, saya coba buka-buka shield yang ada. Dan bener emang. Di overlay mereka, ga ada yang pake <code class="language-plaintext highlighter-rouge">&amp;pro_micro</code> lagi. Semua nya mereferensikan <code class="language-plaintext highlighter-rouge">&amp;pro_micro_a</code> dan <code class="language-plaintext highlighter-rouge">&amp;pro_micro_d</code>. Setelah cari-cari di google sebentar, ketemulah <a href="https://github.com/zmkfirmware/zmk/blob/304603240f7ba16f67912a0031c64fb9ae4e8279/docs/docs/dev-guide-new-shield.md">ini</a>. Ternyata wiki nya ga keupdate. Xianjing beneran.</p>
+
+<p>Tapi ga masalah sih. Setelah saya teliti, ternyata referensi nomor pin nya tetep sama, pake yang warna biru, cuman ada beberapa pin yang pake <code class="language-plaintext highlighter-rouge">A</code> dan <code class="language-plaintext highlighter-rouge">D</code>. Analog dan Digital? Bisa jadi. Jadi main amannya, default nya pake <code class="language-plaintext highlighter-rouge">&amp;pro_micro_d</code>, kalo ada referensi pin <code class="language-plaintext highlighter-rouge">A%%</code>, maka di overlay ditulisnya <code class="language-plaintext highlighter-rouge">&amp;pro_micro_a %%</code>. Jadi seperti ini.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">col</span><span class="o">-</span><span class="n">gpios</span>
+        <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">10</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">16</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">14</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">15</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">0</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">1</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">2</span> <span class="no">GPIO_ACTIVE_HIGH</span><span class="o">&gt;</span>
+
+<span class="n">row</span><span class="o">-</span><span class="n">gpios</span>
+        <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">1</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">9</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_a</span> <span class="mi">8</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">7</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">6</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">5</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">4</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">3</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">2</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span>
+        <span class="p">,</span> <span class="o">&lt;&amp;</span><span class="n">pro_micro_d</span> <span class="mi">0</span> <span class="p">(</span><span class="no">GPIO_ACTIVE_HIGH</span> <span class="o">|</span> <span class="no">GPIO_PULL_DOWN</span><span class="p">)</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>Dan kecenya lagi, di zmk juga bisa matrix-transform. Apa itu matrix-transform? Kita kan kalo bikin pcb, untuk mbagi pin yang terbatas biar jadi banyak, tombol-tombol nya dibikin matrix kan. Dan untuk mengakomodasi pin-pin yang terbatas kadang ada tombol yang letak nya di matrix ga sesuai sama letaknya di tampilan.</p>
+
+<p>Misal. Kita ada micro controller yang punya 16 pin. Kita mau buat keyboard 60% misalkan.</p>
+
+<p>Di keyboard 60% itu kan tampilan matrix tombolnya 14 kolom x 5 baris, dengan total 61 tombol. Berarti micro controller nya ga cukup untuk mengakomodasi 14x5 matrix. Dia butuh minimal 19 pin.</p>
+
+<p>Tapi, kalo kita pake matrix 8x8, dengan jumlah tombol 64, maka microcontroller 16 pin jadi bisa mengakomodasi 61 tombol yang diperlukan sama layout 60%. Nantinya, desain pcb nya juga harus menyesuaikan. Fungsinya matrix transform itu, biar visual matrix sama pin matrix nya keliatan rapi dan gampang di mapping. Ini matrix transform saya.</p>
+
+<p><img src="/assets/img/matrix.JPG" alt="matrix" width="100%" /></p>
+
+<p><img src="/assets/img/zmk_build.JPG" alt="zmk-build" width="100%" /></p>
+
+<p><img src="/assets/img/zmk_firmware.JPG" alt="zmk-firmware" width="100%" /></p>
+
+<p>Nrfmicro ini bootloader nya keren. Jadi dia itu modelnya kayak flashdisk. Tinggal drag&amp;drop aja firmware yang barusan dibuild.</p>
+
+<p><img src="/assets/img/bootloader.JPG" alt="bootloader" width="100%" class="center-image" /></p>
+
+<p>Udah, jadi. Kombinasi zmk dan nrfmicro bener-bener pas sih menurut saya. Ga pake ribet (kecuali waktu bikin overlay gara-gara wiki ga diupdate).</p>
+
+<p><br />
+<br /></p>
+
+<hr />
+
+<p>Sebenernya di build kali ini itu ada satu yang kelewatan. Saya ga bikin switch on/off buat keyboard nya. Jadi dia ga bisa mati alias hidup terus. Ini saya kasih baterei 2000mah, dan pemakaian dayanya lumayan hemat sih. Dari pertama kali build keyboard ini (2022-06-22) sampai saya nulis artikel ini (2022-06-27) cuman berkurang 2%. Berarti kira-kira dia makan 0.5%/hari. Kalo 100% berarti bisa tahan kurang lebih setengah tahun ya baru butuh dicas lagi.
+<br />
+<br /></p>
+
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
+
+<p><a href="/custom-keyboard-pt-1">Part 1</a>
+<a href="/custom-keyboard-pt-2">Part 2</a>
+<a href="/custom-keyboard-pt-3">Part 3</a></p>
+:ET

@@ -35,6 +35,11 @@ Buka tutup case nya juga jadi lebih gampang. Ga perlu nyari obeng dulu.
 *buat buka tinggal didorong aja, lepas ntar. kayak bongkar pasang gearbox nya tamiya* 
 {: style="text-align: center;"}
 
+<br>
+<br>
+
+----------------
+
 Case keyboard saya kali ini ada 3 bagian, lebih 1 dari yang sebelumnya yang cuman 2 bagian. Ada top case, bottom case, sama plate. plate nya sendiri saya buat tebalnya 3mm karena saya ga suka plate yang terlalu flex. Meskipun 50% kekakuannya karena kekunci sama pcb nya. (karena disolder)
 
 ![wkl_plate](/assets/img/wkl_plate.jpg){:width="100%" .center-image}
@@ -51,6 +56,11 @@ Untuk desain pcb, ya begitulah ya. Standar. Pokoknya bisa dibuat mounting pro-mi
 ![pcb](/assets/img/pcb_wkl2.JPG){:width="100%" .center-image}
 *kira-kira kayak gini lah pcb nya, lupa moto, ini renderan dari kicad*
 {: style="text-align: center;"}
+
+<br>
+<br>
+
+----------------
 
 Ada 2 firmware yang jadi pilihan saya untuk nrfmicro ini. Yang pertama qmk branch nrf52, yang kedua zmk. Saya pilih zmk.
 
@@ -73,3 +83,4 @@ Wassalamu'alaikum Warrahmatullah Wabarakatuh.
 
 [Part 1]({% post_url 2021-01-16-custom-keyboard-pt-1 %})
 [Part 2]({% post_url 2021-02-08-custom-keyboard-pt-2 %})
+[Part 4]({% post_url 2022-06-27-custom-keyboard-pt-4 %})
