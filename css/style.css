@@ -1,0 +1,262 @@
+body {
+    margin: 0em;
+    line-height: 130%;
+    padding: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+body code {
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: pre-wrap !important;
+    line-height: 100%;
+}
+body table, body th, body td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 0.5rem;
+}
+body table {
+    margin: 0.5rem;
+}
+body em {
+    color: #8d8d8d;
+}
+body .center-image {
+    display: inherit;
+    margin: 0 auto;
+}
+body .header {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+    display: flex;
+}
+body .header div {
+    width: 25%;
+    display: block;
+    text-align: center;
+}
+body .kisi-kisi {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid;
+}
+body .post .title {
+    font-size: 1.6rem;
+    border-bottom: 1px solid;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    line-height: 110%;
+}
+body .post .title .date {
+    font-size: 0.8rem;
+}
+body .post .back {
+    padding: 4rem 0;
+}
+body .home {
+    padding: 1.2rem 0;
+}
+body .home table {
+    margin: 0;
+    border: none;
+}
+body .home td, body .home th {
+    padding: 0;
+    border: none;
+    vertical-align: top;
+    padding-right: 0.5rem;
+}
+body .home .year {
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.bg_red {
+    background-color: red;
+    color: white;
+}
+.bg_yellow {
+    background-color: yellow;
+}
+.bg_blue {
+    background-color: blue;
+    color: white;
+}
+.highlight {
+    padding: 0 2rem;
+    border: 1px solid #696969 !important;
+}
+@media (min-width: 320px) {
+   /* smartphones, iPhone, portrait 480x320 phones */
+    body {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+   }
+    .highlight {
+        padding: 0 0.5rem;
+   }
+}
+@media (min-width: 481px) {
+   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+}
+@media (min-width: 641px) {
+   /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    body {
+        font-size: 1.5em;
+   }
+    body .post .title {
+        font-size: 2.4rem;
+        padding-top: 1.25rem;
+        padding-bottom: 0.75rem;
+   }
+    body .post .title .date {
+        font-size: 1.2rem;
+   }
+    body .home .year {
+        font-size: 1.8rem;
+        padding-top: 1.8rem;
+   }
+}
+@media (min-width: 961px) {
+   /* tablet, landscape iPad, lo-res laptops ands desktops */
+    body {
+        width: 900px;
+        margin: auto;
+   }
+}
+@media (min-width: 1025px) {
+   /* big landscape tablets, laptops, and desktops */
+}
+@media (min-width: 1281px) {
+   /* hi-res laptops and desktops */
+    body {
+        font-size: 1.2em;
+   }
+    body .home .year {
+        font-size: 1.4rem;
+        padding-top: 0.8rem;
+   }
+    nav, footer, .center_page {
+        width: 50rem;
+        margin: 0 auto;
+   }
+    .kisi-kisi {
+        display: block;
+   }
+}
+figure {
+    margin: 0;
+}
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em
+  }
+  code.hljs {
+    padding: 3px 5px
+  }
+  /*
+  
+  Intellij-light style (c) Pegasis <me@pegasis.site>
+  
+  */
+  .hljs {
+    color: #000;
+    background: #fff
+  }
+  .hljs-subst,
+  .hljs-title {
+    font-weight: normal;
+    color: #000
+  }
+  .hljs-title.function_ {
+    color: #7A7A43
+  }
+  .hljs-code,
+  .hljs-comment,
+  .hljs-quote {
+    color: #8C8C8C;
+    font-style: italic
+  }
+  .hljs-meta {
+    color: #9E880D
+  }
+  .hljs-section {
+    color: #871094
+  }
+  .hljs-variable.language_,
+  .hljs-symbol,
+  .hljs-selector-class,
+  .hljs-selector-id,
+  .hljs-selector-tag,
+  .hljs-template-tag,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-keyword,
+  .hljs-meta .hljs-keyword,
+  .hljs-literal,
+  .hljs-name,
+  .hljs-built_in,
+  .hljs-type {
+    color: #0033B3
+  }
+  .hljs-property,
+  .hljs-attr {
+    color: #871094
+  }
+  .hljs-attribute {
+    color: #174AD4
+  }
+  .hljs-number {
+    color: #1750EB
+  }
+  .hljs-regexp {
+    color: #264EFF
+  }
+  .hljs-link {
+    text-decoration: underline;
+    color: #006DCC
+  }
+  .hljs-meta .hljs-string,
+  .hljs-string {
+    color: #067D17
+  }
+  .hljs-char.escape_ {
+    color: #0037A6
+  }
+  .hljs-doctag {
+    text-decoration: underline
+  }
+  .hljs-template-variable {
+    color: #248F8F
+  }
+  .hljs-addition {
+    background: #BEE6BE
+  }
+  .hljs-deletion {
+    background: #D6D6D6
+  }
+  .hljs-emphasis {
+    font-style: italic
+  }
+  .hljs-strong {
+    font-weight: bold
+  }
+  .hljs-variable,
+  .hljs-operator,
+  .hljs-punctuation,
+  .hljs-title.class_.inherited__,
+  .hljs-title.class_,
+  .hljs-params,
+  .hljs-bullet,
+  .hljs-formula,
+  .hljs-tag {
+    /* purposely ignored */
+    
+  }

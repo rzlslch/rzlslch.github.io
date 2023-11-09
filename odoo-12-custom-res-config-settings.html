@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>
+                odoo 12: custom res.config.settings
+        </title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    </head>
+    <body>
+        <section>
+            <div class="center_page">
+                
+<div class="post">
+<!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <div><a href="/">home</a></div>
+    <div><a href="/about">about</a></div>
+    <div><a href="/resume">resume</a></div>
+    <div><a href="/contact">contact</a></div>
+</div>
+    <div class="title">
+        odoo 12: custom res.config.settings
+        <div class="date">05/17/2019 - code</div>
+    </div>
+    <div class="content">
+        <p>Assalamu'alaikum Warrahmatullah Wabarakatuh</p>
+<p>Bismillahirrahmanirrahim</p>
+<p>Pada Odoo 12, untuk dapat menambahkan <code>custom config</code> pada <code>setting</code>, adalah sebagai berikut.</p>
+<p>Pertama adalah dengan membuat <code>fields</code> pada <code>res.config.settings</code></p>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResConfigCustom</span>(models.TransientModel):
+    _inherit = <span class="hljs-string">&#x27;res.config.settings&#x27;</span>
+
+    custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
+</code></pre>
+<p>Karena <code>model</code> dari <code>res.config.settings</code> merupakan <code>TransientModel</code>, data yang dimasukkan tidak dapat disimpan dalam <code>model</code> tersebut. Sehingga data tersebut harus disimpan pada <code>model</code> lainnya. Contohnya, data akan disimpan pada <code>res.company</code>. Maka harus dibuatkan field untuk menyimpan data tersebut.</p>
+<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResCompanyCustom</span>(models.Model):
+    _inherit = <span class="hljs-string">&#x27;res.company&#x27;</span>
+
+    custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
+</code></pre>
+<p>Untuk menyimpan data pada <code>model</code> yang sudah disiapkan, buat akses untuk memanggil fungsi <code>save</code> pada <code>res.config.settings</code>. Tidak seperti <code>model</code> pada umumnya yang menggunakan <code>write</code>, <code>res.config.settings</code> menggunakan <code>create</code> waktu memanggil fungsi <code>save</code>. Maka panggil fungsi <code>create</code> pada model <code>res.config.settings</code>. Dalam fungsi tersebut panggil fungsi untuk menyimpan data yang ada pada <code>model</code> yang dituju. Karena data yang akan disimpan berada pada <code>field custom_field</code>, maka ambil <code>values</code> yang dijalankan ketika melakukan proses <code>create</code> dan simpan pada <code>model</code> yang dituju, yaitu <code>res.company</code>. </p>
+<pre><code class="hljs"><span class="hljs-meta">    @api.model</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">self, values</span>):
+        res = <span class="hljs-built_in">super</span>(ResConfigCustom, self).create(values)
+        self.env.user.company_id.write({<span class="hljs-string">&#x27;custom_field&#x27;</span>: values[<span class="hljs-string">&#x27;custom_field&#x27;</span>]})
+        <span class="hljs-keyword">return</span> res
+</code></pre>
+<p>Sekarang data telah tersimpan pada <code>model</code> yang dituju.</p>
+<p>Lalu bagaimana cara agar data tersebut dapat ditampilkan pada <code>res.config.settings</code>? Caranya adalah dengan memanggil fungsi <code>default_get</code> yang dijalankan setiap kali sistem mau menampilkan <code>config settings</code>. Fungsi ini akan memasukkan data pada <code>parameter fields</code> pada <code>res.config.settings</code>. Langsung masukkan saja data yang mau ditampilkan pada <code>fields</code> yang dituju.</p>
+<pre><code class="hljs"><span class="hljs-meta">    @api.model</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">default_get</span>(<span class="hljs-params">self, fields</span>):
+        res = <span class="hljs-built_in">super</span>(ResConfigCustom, self).default_get(fields)
+        res[<span class="hljs-string">&#x27;custom_field&#x27;</span>] = self.env.user.company_id.custom_field
+        <span class="hljs-keyword">return</span> res
+</code></pre>
+<p>Maka secara otomatis, <code>res.config.settings</code> akan menampilkan data yang sebelumnya disimpan pada <code>res.company</code></p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+
+            </div>
+        </section>
+        <footer>
+<div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+        </footer>
+    </body>
+</html>
