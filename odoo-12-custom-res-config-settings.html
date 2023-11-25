@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>
+            
                 odoo 12: custom res.config.settings
+            
         </title>
         <link rel="stylesheet" href="/css/style.css">
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     </head>
     <body>
+        
+        
         <section>
             <div class="center_page">
-                
-<div class="post">
+                <div class="post">
 <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
@@ -25,37 +28,37 @@
 </div>
     <div class="title">
         odoo 12: custom res.config.settings
-        <div class="date">05/17/2019 - code</div>
+        <div class="date">05/17/2019 - [code]</div>
     </div>
     <div class="content">
         <p>Assalamu'alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Pada Odoo 12, untuk dapat menambahkan <code>custom config</code> pada <code>setting</code>, adalah sebagai berikut.</p>
 <p>Pertama adalah dengan membuat <code>fields</code> pada <code>res.config.settings</code></p>
-<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResConfigCustom</span>(models.TransientModel):
-    _inherit = <span class="hljs-string">&#x27;res.config.settings&#x27;</span>
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResConfigCustom</span><span class="hljs-params">(models.TransientModel)</span>:</span>
+    _inherit = <span class="hljs-string">'res.config.settings'</span>
 
-    custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
+    custom_field = fields.Char(<span class="hljs-string">'Custom Config'</span>)
 </code></pre>
 <p>Karena <code>model</code> dari <code>res.config.settings</code> merupakan <code>TransientModel</code>, data yang dimasukkan tidak dapat disimpan dalam <code>model</code> tersebut. Sehingga data tersebut harus disimpan pada <code>model</code> lainnya. Contohnya, data akan disimpan pada <code>res.company</code>. Maka harus dibuatkan field untuk menyimpan data tersebut.</p>
-<pre><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResCompanyCustom</span>(models.Model):
-    _inherit = <span class="hljs-string">&#x27;res.company&#x27;</span>
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResCompanyCustom</span><span class="hljs-params">(models.Model)</span>:</span>
+    _inherit = <span class="hljs-string">'res.company'</span>
 
-    custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
+    custom_field = fields.Char(<span class="hljs-string">'Custom Config'</span>)
 </code></pre>
-<p>Untuk menyimpan data pada <code>model</code> yang sudah disiapkan, buat akses untuk memanggil fungsi <code>save</code> pada <code>res.config.settings</code>. Tidak seperti <code>model</code> pada umumnya yang menggunakan <code>write</code>, <code>res.config.settings</code> menggunakan <code>create</code> waktu memanggil fungsi <code>save</code>. Maka panggil fungsi <code>create</code> pada model <code>res.config.settings</code>. Dalam fungsi tersebut panggil fungsi untuk menyimpan data yang ada pada <code>model</code> yang dituju. Karena data yang akan disimpan berada pada <code>field custom_field</code>, maka ambil <code>values</code> yang dijalankan ketika melakukan proses <code>create</code> dan simpan pada <code>model</code> yang dituju, yaitu <code>res.company</code>. </p>
-<pre><code class="hljs"><span class="hljs-meta">    @api.model</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">self, values</span>):
-        res = <span class="hljs-built_in">super</span>(ResConfigCustom, self).create(values)
-        self.env.user.company_id.write({<span class="hljs-string">&#x27;custom_field&#x27;</span>: values[<span class="hljs-string">&#x27;custom_field&#x27;</span>]})
+<p>Untuk menyimpan data pada <code>model</code> yang sudah disiapkan, buat akses untuk memanggil fungsi <code>save</code> pada <code>res.config.settings</code>. Tidak seperti <code>model</code> pada umumnya yang menggunakan <code>write</code>, <code>res.config.settings</code> menggunakan <code>create</code> waktu memanggil fungsi <code>save</code>. Maka panggil fungsi <code>create</code> pada model <code>res.config.settings</code>. Dalam fungsi tersebut panggil fungsi untuk menyimpan data yang ada pada <code>model</code> yang dituju. Karena data yang akan disimpan berada pada <code>field custom_field</code>, maka ambil <code>values</code> yang dijalankan ketika melakukan proses <code>create</code> dan simpan pada <code>model</code> yang dituju, yaitu <code>res.company</code>.</p>
+<pre><code><span class="hljs-meta">    @api.model</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create</span><span class="hljs-params">(self, values)</span>:</span>
+        res = super(ResConfigCustom, self).create(values)
+        self.env.user.company_id.write({<span class="hljs-string">'custom_field'</span>: values[<span class="hljs-string">'custom_field'</span>]})
         <span class="hljs-keyword">return</span> res
 </code></pre>
 <p>Sekarang data telah tersimpan pada <code>model</code> yang dituju.</p>
 <p>Lalu bagaimana cara agar data tersebut dapat ditampilkan pada <code>res.config.settings</code>? Caranya adalah dengan memanggil fungsi <code>default_get</code> yang dijalankan setiap kali sistem mau menampilkan <code>config settings</code>. Fungsi ini akan memasukkan data pada <code>parameter fields</code> pada <code>res.config.settings</code>. Langsung masukkan saja data yang mau ditampilkan pada <code>fields</code> yang dituju.</p>
-<pre><code class="hljs"><span class="hljs-meta">    @api.model</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">default_get</span>(<span class="hljs-params">self, fields</span>):
-        res = <span class="hljs-built_in">super</span>(ResConfigCustom, self).default_get(fields)
-        res[<span class="hljs-string">&#x27;custom_field&#x27;</span>] = self.env.user.company_id.custom_field
+<pre><code><span class="hljs-meta">    @api.model</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">default_get</span><span class="hljs-params">(self, fields)</span>:</span>
+        res = super(ResConfigCustom, self).default_get(fields)
+        res[<span class="hljs-string">'custom_field'</span>] = self.env.user.company_id.custom_field
         <span class="hljs-keyword">return</span> res
 </code></pre>
 <p>Maka secara otomatis, <code>res.config.settings</code> akan menampilkan data yang sebelumnya disimpan pada <code>res.company</code></p>
@@ -65,6 +68,7 @@
             <a href="/">Kembali ke halaman utama</a>
         </div>
     </div>
+
 
 
 <div id="disqus_thread"></div>
@@ -89,6 +93,7 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 
 </div>
 

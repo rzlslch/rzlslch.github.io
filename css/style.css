@@ -73,6 +73,11 @@ body .home .year {
     padding-bottom: 0.5rem;
     font-size: 1.2rem;
 }
+
+img {
+  max-width: 100%;
+}
+
 .nowrap {
     white-space: nowrap;
 }

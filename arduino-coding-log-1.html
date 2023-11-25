@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>
+            
                 Arduino coding log 1
+            
         </title>
         <link rel="stylesheet" href="/css/style.css">
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     </head>
     <body>
+        
+        
         <section>
             <div class="center_page">
-                
-<div class="post">
+                <div class="post">
 <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
@@ -25,47 +28,47 @@
 </div>
     <div class="title">
         Arduino coding log 1
-        <div class="date">03/14/2021 - code</div>
+        <div class="date">03/14/2021 - [code]</div>
     </div>
     <div class="content">
         <p>Assalamu'alaikum Warahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
-<p>Pada kesempatan kali ini saya memutuskan untuk bereksperimen dengan micro controller. Lebih tepat nya Arduino Pro Micro (Leonardo). Saya menambahkan modul nrf24l01+ sebagai transreceiver. </p>
+<p>Pada kesempatan kali ini saya memutuskan untuk bereksperimen dengan micro controller. Lebih tepat nya Arduino Pro Micro (Leonardo). Saya menambahkan modul nrf24l01+ sebagai transreceiver.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left;">Barang</th>
-<th style="text-align:right;">Harga (Rp)</th>
+<th align="left">Barang</th>
+<th align="right">Harga (Rp)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">2 pro micro @ 60rb</td>
-<td style="text-align:right;">120.000</td>
+<td align="left">2 pro micro @ 60rb</td>
+<td align="right">120.000</td>
 </tr>
 <tr>
-<td style="text-align:left;">2 module nrf24l01+ @13rb</td>
-<td style="text-align:right;">26.000</td>
+<td align="left">2 module nrf24l01+ @13rb</td>
+<td align="right">26.000</td>
 </tr>
 <tr>
-<td style="text-align:left;">breadboard</td>
-<td style="text-align:right;">15.000</td>
+<td align="left">breadboard</td>
+<td align="right">15.000</td>
 </tr>
 <tr>
-<td style="text-align:left;">kabel jumper pelangi</td>
-<td style="text-align:right;">20.000</td>
+<td align="left">kabel jumper pelangi</td>
+<td align="right">20.000</td>
 </tr>
 <tr>
-<td style="text-align:left;">2 kabel data usb-micro @15rb</td>
-<td style="text-align:right;">30.000</td>
+<td align="left">2 kabel data usb-micro @15rb</td>
+<td align="right">30.000</td>
 </tr>
 <tr>
-<td style="text-align:left;">dioda 1n4148 x100</td>
-<td style="text-align:right;">20.000</td>
+<td align="left">dioda 1n4148 x100</td>
+<td align="right">20.000</td>
 </tr>
 <tr>
-<td style="text-align:left;"><strong>Total</strong></td>
-<td style="text-align:right;"><strong>231.000</strong></td>
+<td align="left"><strong>Total</strong></td>
+<td align="right"><strong>231.000</strong></td>
 </tr>
 </tbody>
 </table>
@@ -75,61 +78,61 @@
 <p>Saya membaca referensi dari sini <a href="https://www.researchgate.net/publication/338345202_An_Experiment_With_NRF24L01_and_Arduino_Pro_Micro_Data_Transmission_for_IoT">An Experiment With NRF24L01 and Arduino Pro Micro Data Transmission for IoT</a></p>
 <p>Disitu ditunjukkan koneksi dari modul nrf24l01 ke arduino pro micro harus seperti apa.</p>
 <p>Langsung saja pada kodingan, berikut ini adalah untuk transmitter. Disini saya menggunakan library <a href="https://github.com/maniacbug/RF24">RF24 fork milik maniacbug</a> karena disana terdapat support untuk modul nrf24l01+.</p>
-<pre><code class="hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;RF24.h&quot;</span></span>
+<pre><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"RF24.h"</span></span>
 
-RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)</span>; <span class="hljs-comment">// disini saya tidak menggunakan CE sama sekali</span>
+<span class="hljs-function">RF24 <span class="hljs-title">radio</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)</span></span>; <span class="hljs-comment">// disini saya tidak menggunakan CE sama sekali</span>
 
-<span class="hljs-type">const</span> <span class="hljs-type">uint64_t</span> channel = <span class="hljs-number">0xF0F0F0F0E1</span>LL; <span class="hljs-comment">// berdasarkan kajian diatas</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">uint64_t</span> channel = <span class="hljs-number">0xF0F0F0F0E1</span>LL; <span class="hljs-comment">// berdasarkan kajian diatas</span>
 
-<span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
-    radio.begin();
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+    radio.<span class="hljs-built_in">begin</span>();
     radio.openWritingPipe(channel); <span class="hljs-comment">// untuk pairing dengan channel yg telah ditentukan</span>
 }
 
-<span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {
-    byte msg = <span class="hljs-number">1</span>;
-    radio.write(&amp;msg, <span class="hljs-keyword">sizeof</span>(msg)); <span class="hljs-comment">// kirim data</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">byte</span> msg = <span class="hljs-number">1</span>;
+    radio.<span class="hljs-built_in">write</span>(&amp;msg, <span class="hljs-keyword">sizeof</span>(msg)); <span class="hljs-comment">// kirim data</span>
 
-    delay(<span class="hljs-number">2000</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);
 }
 </code></pre>
 <p>Sedangkan untuk receiver nya</p>
-<pre><code class="hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;RF24.h&quot;</span></span>
+<pre><code><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"RF24.h"</span></span>
 
-RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)</span>; <span class="hljs-comment">// disini saya juga tidak menggunakan CE sama sekali</span>
+<span class="hljs-function">RF24 <span class="hljs-title">radio</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)</span></span>; <span class="hljs-comment">// disini saya juga tidak menggunakan CE sama sekali</span>
 
-<span class="hljs-type">const</span> <span class="hljs-type">uint64_t</span> channel = <span class="hljs-number">0xF0F0F0F0E1</span>LL; <span class="hljs-comment">// samakan alamat channel nya</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">uint64_t</span> channel = <span class="hljs-number">0xF0F0F0F0E1</span>LL; <span class="hljs-comment">// samakan alamat channel nya</span>
 
-<span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
-    Serial.begin(<span class="hljs-number">9600</span>); <span class="hljs-comment">// di baud 9600</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">Serial</span>.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>); <span class="hljs-comment">// di baud 9600</span>
 
-    radio.begin();
+    radio.<span class="hljs-built_in">begin</span>();
     radio.openReadingPipe(channel); <span class="hljs-comment">// membuka pipe untuk membaca data yg terkirim</span>
-    radio.startListening(); <span class="hljs-comment">// mulai &#x27;mendengarkan&#x27; data dari transmitter</span>
+    radio.startListening(); <span class="hljs-comment">// mulai 'mendengarkan' data dari transmitter</span>
     radio.printDetails(); <span class="hljs-comment">// saya juga ga ngerti ini ngapain?</span>
 }
 
-<span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-keyword">if</span> (radio.avaliable()) {
-        byte msg;
-        <span class="hljs-type">bool</span> done = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">byte</span> msg;
+        <span class="hljs-keyword">bool</span> done = <span class="hljs-literal">false</span>;
         <span class="hljs-keyword">while</span> (!done) {
-            done = radio.read(&amp;msg, <span class="hljs-keyword">sizeof</span>(msg)); <span class="hljs-comment">// mulai &#x27;membaca&#x27; data yg terkirim</span>
-            Serial.println(msg); <span class="hljs-comment">// cetak data nya</span>
+            done = radio.<span class="hljs-built_in">read</span>(&amp;msg, <span class="hljs-keyword">sizeof</span>(msg)); <span class="hljs-comment">// mulai 'membaca' data yg terkirim</span>
+            <span class="hljs-built_in">Serial</span>.<span class="hljs-built_in">println</span>(msg); <span class="hljs-comment">// cetak data nya</span>
         }
     }
 
-    delay(<span class="hljs-number">20</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">20</span>);
 }
 </code></pre>
 <p>Setelah saya upload kodingan tersebut ke masing-masing pro micro nya, saya sudah mulai bisa mengujicoba perihal koneksi dan data yang saling kirim dan terima. Ketika data sudah berhasil terkirim dan diterima, maka sampai sejauh ini modul nrf24l01+ sudah bekerja sesuai fungsinya.</p>
 <p>Tinggal ambil keputusan, mau dibuat apakah modul ini?</p>
 <p>Sebenarnya saya sudah memutuskan mau dibuat apa percobaan ini. Yaitu dibuat untuk membangun mechanical keyboard custom dengan fitur wireless yang menggunakan transreceiver 2.4Ghz. Dan saya juga sudah sedikit riset tentang matrix keyboard.</p>
-<img width="100%" class="center-image" src="/assets/img/arduino-01.jpg" alt="arduino" />
+<p><img src="/assets/img/arduino-01.jpg" alt="arduino" /></p>
 <p>Dan hal ini mungkin akan jadi bahasan selanjutnya terkait judul dari post ini.</p>
 <p>Baiklah sekian dulu field report riset arduino saya, untuk part berikutnya saya akan bahas tentang penggunaan matrix dalam rangkaian.</p>
-<p><br>
-<br></p>
+<br>
+<br>
 <p>Wassalamu'alaikum Warrahmatullah Wabarakatuh.</p>
 
 
@@ -137,6 +140,7 @@ RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<
             <a href="/">Kembali ke halaman utama</a>
         </div>
     </div>
+
 
 
 <div id="disqus_thread"></div>
@@ -161,6 +165,7 @@ RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 
 </div>
 

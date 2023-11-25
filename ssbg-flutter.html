@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>
+            
+                ssbg flutter
+            
+        </title>
+        <link rel="stylesheet" href="/css/style.css">
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    </head>
+    <body>
+        
+        
+        <section>
+            <div class="center_page">
+                <div class="post">
+<!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <div><a href="/">home</a></div>
+    <div><a href="/about">about</a></div>
+    <div><a href="/resume">resume</a></div>
+    <div><a href="/contact">contact</a></div>
+</div>
+    <div class="title">
+        ssbg flutter
+        <div class="date">11/25/2023 - [post]</div>
+    </div>
+    <div class="content">
+        <p>Postingan ini dibuat menggunakan <a href="https://github.com/rzlslch/ssbg_flutter">ssbg_flutter</a></p>
+<p>Jadi saya bikin static blog generator buat nggantiin <code>jekyll</code>. Yang versi ini saya buat pake <a href="https://flutter.dev/">Flutter</a>. Awalnya saya buat menggunakan <code>electron</code>, tapi ternyata hasil <strong>build</strong> nya gede banget. Lebih dari 200mb. Ga masuk akal. Ini cuman blog editor/blog generator, ngapain sampe 200mb. Akhirnya saya tulis ulang pake <strong>flutter</strong>.</p>
+<p>Ini tampilannya.</p>
+<p><img src="/assets/img/ssbg-flutter-home.png" alt="ssbg-home" /></p>
+<p><em>Tampilan Home</em></p>
+<p><img src="/assets/img/ssbg-flutter-config.png" alt="ssbg-config" /></p>
+<p><em>Tampilan Config</em></p>
+<p><img src="/assets/img/ssbg-flutter-list.png" alt="ssbg-list" /></p>
+<p><em>Tampilan List</em></p>
+<p><img src="/assets/img/ssbg-flutter-editor.png" alt="ssbg-editor" /></p>
+<p><em>Tampilan Editor</em></p>
+<h3 id="kenapa">kenapa?</h3>
+<p>Jadi gini. Sebelumnya blog ini digenerate pake <code>jekyll</code>. Saya jarang nulis blog juga. Terakhir saya nulis blog itu tahun kemaren.</p>
+<p>Kapan hari, saya mau update blog saya. Bukan nulis blog post, cuman mau update <strong>resume</strong> sama <strong>contact</strong>. Nah waktu saya mau generate blog saya, error dimana-mana. <code>jekyll</code> rusak lagi. Dan ini nda cuman sekali terjadi.</p>
+<p>Pokoknya setiap saya absen agak lama (ga maintain blog), <code>jekyll</code> berulah. Dan saya sering pindah-pindah komputer juga. Jadi lagi-lagi install <code>jekyll</code>. Setiap install <code>jekyll</code> dan plugin nya, ada aja error nya. Ntah <code>dependency</code> nya error, <code>Gemfile</code> nya rusak, dan waktu itu kan saya pake <code>thor</code> untuk generate post baru. Itu juga sering rusak, ga tau kenapa.</p>
+<p><strong>Disclaimer</strong>, ya, saya ga jago pake <code>ruby</code>. Jadi ya ruepot, asli.</p>
+<h3 id="terus-gimana">terus gimana?</h3>
+<p>Saya cari <em>static blog generator</em> lain selain <code>jekyll</code>. Dan hampir aja saya mau pake <code>hugo</code>. Tapi saya kudu tulis ulang <strong>template</strong> blog nya dong kalo pindah engine. Dan juga saya belum nemu ada <strong>blog engine</strong> yang <strong>stand-alone</strong>, dimana saya bisa langsung pake. Dobel klik. Gitu aja ga pusing-pusing install <code>dependency</code> dll.</p>
+<p>Yaudah saya bikin sendiri. Wong saya programmer. Sekalian saya bikinkan <em>GUI</em> nya. Biar tambah kerasa <strong>stand-alone</strong>.</p>
+<p>Seperti yang saya sebutkan di atas, awalnya saya buat pake <code>electron</code>. Dan hasil buildnya <code>electron</code> bisa sampek 200mb lebih. Yawis, saya build ulang pake <code>flutter</code>. Dan <code>flutter</code> juga <strong>cross-paltform</strong>, sekali tulis bisa dideploy ke banyak <strong>platform</strong>.</p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+            </div>
+        </section>
+        <footer>
+<div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+        </footer>
+    </body>
+</html>

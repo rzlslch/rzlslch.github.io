@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>
+            
                 odoo 12: company logo
+            
         </title>
         <link rel="stylesheet" href="/css/style.css">
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     </head>
     <body>
+        
+        
         <section>
             <div class="center_page">
-                
-<div class="post">
+                <div class="post">
 <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
@@ -25,16 +28,16 @@
 </div>
     <div class="title">
         odoo 12: company logo
-        <div class="date">05/20/2019 - code</div>
+        <div class="date">05/20/2019 - [code]</div>
     </div>
     <div class="content">
         <p>Assalamu'alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Pada Odoo 12, untuk menambahkan <code>image</code> logo pada header tidak lagi menggunakan</p>
-<pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">&quot;company.logo&quot;</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">&quot;&#x27;data:image/png;base64,%s&#x27; %company.logo&quot;</span>/&gt;</span>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">"company.logo"</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">"'data:image/png;base64,%s' %company.logo"</span>/&gt;</span>
 </code></pre>
 <p>melainkan dengan menggunakan</p>
-<pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">&quot;company.logo&quot;</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">&quot;image_date_uri(company.logo)&quot;</span>/&gt;</span>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">"company.logo"</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">"image_date_uri(company.logo)"</span>/&gt;</span>
 </code></pre>
 
 
@@ -42,6 +45,7 @@
             <a href="/">Kembali ke halaman utama</a>
         </div>
     </div>
+
 
 
 <div id="disqus_thread"></div>
@@ -66,6 +70,7 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 
 </div>
 
