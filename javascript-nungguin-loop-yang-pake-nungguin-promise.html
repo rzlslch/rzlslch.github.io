@@ -1,99 +1,119 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>
-            
-                javascript: nungguin loop yang pake nungguin promise
-            
-        </title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
         
+        javascript: nungguin loop yang pake nungguin promise
         
-        <section>
-            <div class="center_page">
-                <div class="post">
-<!-- <div class="header">
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
 <div class="header">
-    <div><a href="/">home</a></div>
+    <!-- <div><a href="/">home</a></div>
     <div><a href="/about">about</a></div>
     <div><a href="/resume">resume</a></div>
-    <div><a href="/contact">contact</a></div>
+    <div><a href="/contact">contact</a></div> -->
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about">about</a>
+        <a href="/resume">resume</a>
+        <a href="/contact">contact</a>
+    </div>
 </div>
     <div class="title">
         javascript: nungguin loop yang pake nungguin promise
-        <div class="date">02/11/2021 - [code]</div>
+        <div class="date">02 February 2021 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu'alaikum Warrahmatullah Wabarakatuh</p>
+        <p>Assalamu&#39;alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Jadi begini, kemarin waktu ngoding kerjaan, saya nemu trik yang lumayan asik tentang loop yang digabungin sama <code>Promise</code>. Seperti yang kita tahu, <code>Promise</code> kan buat nungguin hasil ya. Kira-kira seperti itu lah.</p>
 <p>Misal seperti self running function yang kayak ini</p>
-<pre><code>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-        setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {                  <span class="hljs-comment">// fungsi buat nunggu </span>
-            resolve(<span class="hljs-string">'hasil yang ditunggu'</span>)  <span class="hljs-comment">// selama 1 detik misal</span>
+<pre><code class='hljs'>
+(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {                  <span class="hljs-comment">// fungsi buat nunggu </span>
+            <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;hasil yang ditunggu&#x27;</span>)  <span class="hljs-comment">// selama 1 detik misal</span>
         }, <span class="hljs-number">1000</span>);
     })
-        .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Jalankan ini kalo hasilnya udah keluar'</span>);
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ini <span class="hljs-subst">${result}</span>`</span>);
+        .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Jalankan ini kalo hasilnya udah keluar&#x27;</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ini <span class="hljs-subst">${result}</span>`</span>);
         })
 })()
 </code></pre>
+
 <p>Nah, sudah bisa ngerti kan gunanya <code>Promise</code>?</p>
 <p>Lalu ada suatu kasus. Dimana ada lebih dari satu <code>Promise</code>, dan hasil dari semua <code>Promise</code> tersebut harus ada dulu sebelum menjalankan fungsi yang lain. Misal gini</p>
-<pre><code>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">var</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise2 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise3 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise4 = <span class="hljs-built_in">Promise</span>.resolve( ... );
+<pre><code class='hljs'>
+(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">var</span> promise1 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise2 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise3 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise4 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
 
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'jalankan ini ketika semua promise selesai'</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;jalankan ini ketika semua promise selesai&#x27;</span>);
 })()
 </code></pre>
+
 <p>Biasanya, kasus seperti ini mesti manggil <code>async/await</code> untuk menghindari callback hell yang terjadi di dalam <code>.then</code> wkwkwkwk.. Tapi nampaknya saya lupa kalo ada <code>Promise.all</code>.</p>
-<pre><code>(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">var</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise2 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise3 = <span class="hljs-built_in">Promise</span>.resolve( ... );
-    <span class="hljs-keyword">var</span> promise4 = <span class="hljs-built_in">Promise</span>.resolve( ... );
+<pre><code class='hljs'>
+(<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">var</span> promise1 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise2 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise3 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
+    <span class="hljs-keyword">var</span> promise4 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
 
-    <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all([promise1, promise2, promise3, promise4]);
+    <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([promise1, promise2, promise3, promise4]);
 
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'jalankan ini ketika semua promise selesai'</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;jalankan ini ketika semua promise selesai&#x27;</span>);
 })()
 </code></pre>
-<p>Kelebihan <code>Promise.all</code> sendiri ada pada error handling nya. Kalo pake banyak <code>await</code>, error bakal dimunculkan ketika <code>Promise</code> yang berjajar di return semua. Sedangkan pada <code>Promise.all</code>, ketika ada salah satu yang error, saat itu lah bakal di return error nya dan berhenti sampai sana. Dan ini mantap kali kalo dipake di dalem loop.</p>
-<p>Misal</p>
-<pre><code><span class="hljs-keyword">const</span> array = [ ... ] <span class="hljs-comment">// misal ini data array buat ngeloop</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">promise</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">// ini promise yang mau dipanggil</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+<p>Kelebihan <code>Promise.all</code> sendiri ada pada error handling nya. Kalo pake banyak <code>await</code>, error bakal dimunculkan ketika <code>Promise</code> yang berjajar di return semua. Sedangkan pada <code>Promise.all</code>, ketika ada salah satu yang error, saat itu lah bakal di return error nya dan berhenti sampai sana. Dan ini mantap kali kalo dipake di dalem loop.</p>
+<p>Misal </p>
+<pre><code class='hljs'>
+<span class="hljs-keyword">const</span> array = [ ... ] <span class="hljs-comment">// misal ini data array buat ngeloop</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">promise</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">// ini promise yang mau dipanggil</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         ... <span class="hljs-comment">// code promise nya misal</span>
-        resolve();
+        <span class="hljs-title function_">resolve</span>();
     })
 }
 
-(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(array.map(<span class="hljs-keyword">async</span> e =&gt; {
-        <span class="hljs-keyword">await</span> promise();
+(<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(array.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">async</span> e =&gt; {
+        <span class="hljs-keyword">await</span> <span class="hljs-title function_">promise</span>();
     }))
 
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'sudah selesai semua'</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;sudah selesai semua&#x27;</span>);
 })()
 </code></pre>
+
 <p>Jadi untuk nungguin loop yang di dalem nya ada promise yang juga harus ditungguin, bisa pake cara seperti diatas. Sebenernya masih banyak cara lain, misal pake <code>asyncForEach</code> atau yang lain, tapi menurut saya pake <code>Promise.all</code> enak aja dipake. Selain itu error handling nya juga ga nunggu lama-lama, nda harus semua <code>Promise</code> selesai dulu.</p>
 <p>Konklusi nya, pakailah <code>Promise.all</code>. Udah sih itu aja.</p>
 <br>
 <br>
-<p>Wassalamu'alaikum Warrahmatullah Wabarakatuh.</p>
+
+<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
 
 
         <div class="back">
@@ -101,7 +121,7 @@
         </div>
     </div>
 
-
+    
 
 <div id="disqus_thread"></div>
 <script>
@@ -128,15 +148,15 @@
 
 
 </div>
-
-            </div>
-        </section>
-        <footer>
-<div class="footer">
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
     <div class="middle-footer">
         
     </div>
 </div>
-        </footer>
-    </body>
+    </footer>
+</body>
+
 </html>

@@ -1,65 +1,77 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>
-            
-                Arduino coding log 2
-            
-        </title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
         
+        Arduino coding log 2
         
-        <section>
-            <div class="center_page">
-                <div class="post">
-<!-- <div class="header">
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
 <div class="header">
-    <div><a href="/">home</a></div>
+    <!-- <div><a href="/">home</a></div>
     <div><a href="/about">about</a></div>
     <div><a href="/resume">resume</a></div>
-    <div><a href="/contact">contact</a></div>
+    <div><a href="/contact">contact</a></div> -->
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about">about</a>
+        <a href="/resume">resume</a>
+        <a href="/contact">contact</a>
+    </div>
 </div>
     <div class="title">
         Arduino coding log 2
-        <div class="date">05/12/2021 - [code]</div>
+        <div class="date">05 May 2021 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu'alaikum Warahmatullah Wabarakatuh</p>
+        <p>Assalamu&#39;alaikum Warahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
-<p>Jadi gini. Controller untuk transmitter nya saya ganti pake arduino micro (merk robotdyn) biar pin nya agak banyakan. Oke bisa jalan. Dan saya nyoba pake rotary encoder buat ngasih input. Karena kalo mau buat matrix switch yang agak banyakan ternyata ribet wiring nya di breadboard. Dan kodingan buat rotary encoder ini sebenernya simple sih. Ga perlu pake cegatan kalo cuman pengen muter kanan kiri, cuman ya aga <em>mbleyot</em> dikit kalo diputer2 satu step satu step.</p>
+<p>Jadi gini. Controller untuk transmitter nya saya ganti pake arduino micro (merk robotdyn) biar pin nya agak banyakan. Oke bisa jalan. Dan saya nyoba pake rotary encoder buat ngasih input. Karena kalo mau buat matrix switch yang agak banyakan ternyata ribet wiring nya di breadboard. Dan kodingan buat rotary encoder ini sebenernya simple sih. Ga perlu pake cegatan kalo cuman pengen muter kanan kiri, cuman ya aga <em>mbleyot</em> dikit kalo diputer2 satu step satu step. </p>
 <p>Kodingan nya kayak gini buat nangkep input puteran rotary encoder nya.</p>
-<pre><code>...
-<span class="hljs-keyword">int</span> LastState;
-<span class="hljs-keyword">int</span> State;
-<span class="hljs-keyword">int</span> Pos = <span class="hljs-number">0</span>;
-<span class="hljs-keyword">int</span> TR = <span class="hljs-number">0</span>;
-<span class="hljs-keyword">int</span> TL = <span class="hljs-number">0</span>;
+<pre><code class='hljs'>
+...
+<span class="hljs-type">int</span> LastState;
+<span class="hljs-type">int</span> State;
+<span class="hljs-type">int</span> Pos = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> TR = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> TL = <span class="hljs-number">0</span>;
 ...
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-type">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
     ...
 
-    <span class="hljs-built_in">pinMode</span>(A0, <span class="hljs-literal">INPUT_PULLUP</span>); <span class="hljs-comment">// pin 1 ke A0</span>
-    <span class="hljs-built_in">pinMode</span>(A1, <span class="hljs-literal">INPUT_PULLUP</span>); <span class="hljs-comment">// pin 2 ke A1</span>
+    pinMode(A0, INPUT_PULLUP); <span class="hljs-comment">// pin 1 ke A0</span>
+    pinMode(A1, INPUT_PULLUP); <span class="hljs-comment">// pin 2 ke A1</span>
 
-    LastState = <span class="hljs-built_in">digitalRead</span>(A0); <span class="hljs-comment">// set ke salah satu pin buat acuan</span>
+    LastState = digitalRead(A0); <span class="hljs-comment">// set ke salah satu pin buat acuan</span>
     ...
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-type">void</span> <span class="hljs-title function_">loop</span><span class="hljs-params">()</span> {
     ...
 
-    State = <span class="hljs-built_in">digitalRead</span>(A0);
+    State = digitalRead(A0);
 
     <span class="hljs-keyword">if</span> (State != LastState) {
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(A1) != State) {
+        <span class="hljs-keyword">if</span> (digitalRead(A1) != State) {
             TR ++;
             <span class="hljs-keyword">if</span> (TR &gt; <span class="hljs-number">0</span> &amp;&amp; TR % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
                 TR = <span class="hljs-number">0</span>;
@@ -79,12 +91,14 @@
     ...
 }
 </code></pre>
+
 <p>Ini udah oke.</p>
 <p>Tapi problem nya adalah, kalo rangkaian ini ditinggal idle selama beberapa waktu, maka koneksi nya putus. Udah putus gitu aja. Ketika di puter2, dikasih inputan, ga masuk sama sekali. Ini masih problem yang harus saya pecahkan. Dan masih belum nemu pemecahannya.</p>
 <p>Yaudah sih. Lagi bete saya.</p>
 <br>
 <br>
-<p>Wassalamu'alaikum Warrahmatullah Wabarakatuh.</p>
+
+<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
 
 
         <div class="back">
@@ -92,7 +106,7 @@
         </div>
     </div>
 
-
+    
 
 <div id="disqus_thread"></div>
 <script>
@@ -119,15 +133,15 @@
 
 
 </div>
-
-            </div>
-        </section>
-        <footer>
-<div class="footer">
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
     <div class="middle-footer">
         
     </div>
 </div>
-        </footer>
-    </body>
+    </footer>
+</body>
+
 </html>

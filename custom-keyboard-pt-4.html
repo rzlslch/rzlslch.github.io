@@ -1,94 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>
-            
-                custom keyboard part 4
-            
-        </title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
         
+        custom keyboard part 4
         
-        <section>
-            <div class="center_page">
-                <div class="post">
-<!-- <div class="header">
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
     <a href="/">@rzlslch</a>
 </div> -->
 <div class="header">
-    <div><a href="/">home</a></div>
+    <!-- <div><a href="/">home</a></div>
     <div><a href="/about">about</a></div>
     <div><a href="/resume">resume</a></div>
-    <div><a href="/contact">contact</a></div>
+    <div><a href="/contact">contact</a></div> -->
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about">about</a>
+        <a href="/resume">resume</a>
+        <a href="/contact">contact</a>
+    </div>
 </div>
     <div class="title">
         custom keyboard part 4
-        <div class="date">06/27/2022 - [kbd]</div>
+        <div class="date">06 June 2022 - kbd</div>
     </div>
     <div class="content">
-        <p>Assalamu'alaikum Warahmatullah Wabarakatuh</p>
+        <p>Assalamu&#39;alaikum Warahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
-<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD.</p>
-<p><img src="/assets/img/keyboar_wkl.jpg" alt="keyboard wkl" /></p>
+<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD. </p>
+<p><img src="/assets/img/keyboar_wkl.jpg" alt="keyboard wkl"></p>
 <br>
 <br>
-<hr />
+
+<hr>
 <p>Oke langsung saja.</p>
 <p>Di dokumentasi nya sendiri, zmk ini cukup jelas dan to the point. Jadi saya langsung ikuti aja. Mulai dari setup sampek bikin shield sendiri.</p>
 <p>Disini masalah mulai muncul.</p>
 <p>Kalo dari dokumentasi nya, tutorial seperti ini.</p>
-<p><img src="/assets/img/tutorial_1.JPG" alt="tutorial_1" />
-<img src="/assets/img/tutorial_2.JPG" alt="tutorial_2" /></p>
+<p><img src="/assets/img/tutorial_1.JPG" alt="tutorial_1">
+<img src="/assets/img/tutorial_2.JPG" alt="tutorial_2"></p>
 <p>Yasudah ikutin aja kan? Tapi ternyata setelah dibuild, error. Saya ga tampilin error nya disini soalnya waktu kemaren build itu ga sempet dokumentasi.</p>
 <p>Bingung kan, saya coba buka-buka shield yang ada. Dan bener emang. Di overlay mereka, ga ada yang pake <code>&amp;pro_micro</code> lagi. Semua nya mereferensikan <code>&amp;pro_micro_a</code> dan <code>&amp;pro_micro_d</code>. Setelah cari-cari di google sebentar, ketemulah <a href="https://github.com/zmkfirmware/zmk/blob/304603240f7ba16f67912a0031c64fb9ae4e8279/docs/docs/dev-guide-new-shield.md">ini</a>. Ternyata wiki nya ga keupdate. Xianjing beneran.</p>
 <p>Tapi ga masalah sih. Setelah saya teliti, ternyata referensi nomor pin nya tetep sama, pake yang warna biru, cuman ada beberapa pin yang pake <code>A</code> dan <code>D</code>. Analog dan Digital? Bisa jadi. Jadi main amannya, default nya pake <code>&amp;pro_micro_d</code>, kalo ada referensi pin <code>A%%</code>, maka di overlay ditulisnya <code>&amp;pro_micro_a %%</code>. Jadi seperti ini.</p>
-<pre><code>col-gpios
-        = &lt;&amp;pro_micro_a <span class="hljs-number">10</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">16</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">14</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">15</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_a <span class="hljs-number">0</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_a <span class="hljs-number">1</span> GPIO_ACTIVE_HIGH&gt;
-        , &lt;&amp;pro_micro_a <span class="hljs-number">2</span> GPIO_ACTIVE_HIGH&gt;
+<pre><code class='hljs'>
+col-gpios
+        = &lt;&amp;pro_micro_a <span class="hljs-number">10</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">16</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">14</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">15</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_a <span class="hljs-number">0</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_a <span class="hljs-number">1</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
+        , &lt;&amp;pro_micro_a <span class="hljs-number">2</span> <span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span>&gt;
 
 row-gpios
-        = &lt;&amp;pro_micro_d <span class="hljs-number">1</span> (GPIO_ACTIVE_HIGH <span class="hljs-params">| GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_a 9 (GPIO_ACTIVE_HIGH |</span> GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_a <span class="hljs-number">8</span> (GPIO_ACTIVE_HIGH <span class="hljs-params">| GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d 7 (GPIO_ACTIVE_HIGH |</span> GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">6</span> (GPIO_ACTIVE_HIGH <span class="hljs-params">| GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d 5 (GPIO_ACTIVE_HIGH |</span> GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">4</span> (GPIO_ACTIVE_HIGH <span class="hljs-params">| GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d 3 (GPIO_ACTIVE_HIGH |</span> GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d <span class="hljs-number">2</span> (GPIO_ACTIVE_HIGH <span class="hljs-params">| GPIO_PULL_DOWN)&gt;
-        , &lt;&amp;pro_micro_d 0 (GPIO_ACTIVE_HIGH |</span> GPIO_PULL_DOWN)&gt;
+        = &lt;&amp;pro_micro_d <span class="hljs-number">1</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
+        , &lt;&amp;pro_micro_a 9 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
+        , &lt;&amp;pro_micro_a <span class="hljs-number">8</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
+        , &lt;&amp;pro_micro_d 7 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">6</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
+        , &lt;&amp;pro_micro_d 5 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">4</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
+        , &lt;&amp;pro_micro_d 3 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
+        , &lt;&amp;pro_micro_d <span class="hljs-number">2</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
+        , &lt;&amp;pro_micro_d 0 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
 </code></pre>
+
 <p>Dan kecenya lagi, di zmk juga bisa matrix-transform. Apa itu matrix-transform? Kita kan kalo bikin pcb, untuk mbagi pin yang terbatas biar jadi banyak, tombol-tombol nya dibikin matrix kan. Dan untuk mengakomodasi pin-pin yang terbatas kadang ada tombol yang letak nya di matrix ga sesuai sama letaknya di tampilan.</p>
 <p>Misal. Kita ada micro controller yang punya 16 pin. Kita mau buat keyboard 60% misalkan.</p>
 <p>Di keyboard 60% itu kan tampilan matrix tombolnya 14 kolom x 5 baris, dengan total 61 tombol. Berarti micro controller nya ga cukup untuk mengakomodasi 14x5 matrix. Dia butuh minimal 19 pin.</p>
 <p>Tapi, kalo kita pake matrix 8x8, dengan jumlah tombol 64, maka microcontroller 16 pin jadi bisa mengakomodasi 61 tombol yang diperlukan sama layout 60%. Nantinya, desain pcb nya juga harus menyesuaikan. Fungsinya matrix transform itu, biar visual matrix sama pin matrix nya keliatan rapi dan gampang di mapping. Ini matrix transform saya.</p>
-<p><img src="/assets/img/matrix.JPG" alt="matrix" /></p>
+<p><img src="/assets/img/matrix.JPG" alt="matrix"></p>
 <p>Setelah itu tinggal di build.</p>
-<p><img src="/assets/img/zmk_build.JPG" alt="zmk-build" /></p>
+<p><img src="/assets/img/zmk_build.JPG" alt="zmk-build"></p>
 <p>Setelah selesai build nya, firmware nya nama nya zmk.uf2.</p>
-<p><img src="/assets/img/zmk_firmware.JPG" alt="zmk-firmware" /></p>
+<p><img src="/assets/img/zmk_firmware.JPG" alt="zmk-firmware"></p>
 <p>Nrfmicro ini bootloader nya keren. Jadi dia itu modelnya kayak flashdisk. Tinggal drag&amp;drop aja firmware yang barusan dibuild.</p>
-<p><img src="/assets/img/bootloader.JPG" alt="bootloader" /></p>
-<p>Udah jadi. Kombinasi zmk dan nrfmicro bener-bener pas sih menurut saya. Ga pake ribet (kecuali waktu bikin overlay gara-gara wiki ga diupdate).</p>
+<p><img src="/assets/img/bootloader.JPG" alt="bootloader"></p>
+<p>Udah jadi. Kombinasi zmk dan nrfmicro bener-bener pas sih menurut saya. Ga pake ribet (kecuali waktu bikin overlay gara-gara wiki ga diupdate). </p>
 <br>
 <br>
-<hr />
+
+<hr>
 <p>Sebenernya di build kali ini itu ada satu yang kelewatan. Saya ga bikin switch on/off buat keyboard nya. Jadi dia ga bisa mati alias hidup terus. Ini saya kasih baterei 2000mah, dan pemakaian dayanya lumayan hemat sih. Dari pertama kali build keyboard ini (2022-06-22) sampai saya nulis artikel ini (2022-06-27) cuman berkurang 2%. Berarti kira-kira dia makan 0.5%/hari. Kalo 100% berarti bisa tahan kurang lebih setengah tahun ya baru butuh dicas lagi.</p>
 <p>Oh iya, lubang usb di case nya juga pas banget. Ga nyangka.</p>
-<p><img src="/assets/img/usb_c.jpg" alt="usb c" />
+<p><img src="/assets/img/usb_c.jpg" alt="usb c">
 <br>
 <br></p>
-<p>Wassalamu'alaikum Warrahmatullah Wabarakatuh.</p>
+<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
 <p><a href="/custom-keyboard-pt-1">Part 1</a>
 <a href="/custom-keyboard-pt-2">Part 2</a>
 <a href="/custom-keyboard-pt-3">Part 3</a></p>
@@ -99,7 +114,7 @@ row-gpios
         </div>
     </div>
 
-
+    
 
 <div id="disqus_thread"></div>
 <script>
@@ -126,15 +141,15 @@ row-gpios
 
 
 </div>
-
-            </div>
-        </section>
-        <footer>
-<div class="footer">
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
     <div class="middle-footer">
         
     </div>
 </div>
-        </footer>
-    </body>
+    </footer>
+</body>
+
 </html>
