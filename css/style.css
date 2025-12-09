@@ -47,7 +47,7 @@ body th,
 body td {
   border: 1px solid;
   border-collapse: collapse;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 body table {
@@ -124,7 +124,14 @@ body .home th {
   padding: 0;
   border: none;
   vertical-align: top;
-  padding-right: 0.5rem;
+}
+
+body .home th {
+  text-align: left;
+}
+
+body .home td {
+  padding: 0 0.5em;
 }
 
 body .home .year {
@@ -476,4 +483,22 @@ a.btn-emboss.full {
   width: 100%;
   text-align: left;
   /* or center */
+}
+
+.category-blog {
+  background-color: green;
+  color: #fff;
+}
+
+.category-kbd {
+  background-color: yellow;
+}
+
+.category-code {
+  background-color: red;
+  color: #fff;
+}
+
+.category-vape {
+  background-color: lightblue;
 }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+        Outward DE Archlinux [English]
+        
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <!-- <div><a href="/">home</a></div>
+    <div><a href="/about">about</a></div>
+    <div><a href="/resume">resume</a></div>
+    <div><a href="/contact">contact</a></div> -->
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about">about</a>
+        <a href="/resume">resume</a>
+        <a href="/contact">contact</a>
+    </div>
+</div>
+    <div class="title">
+        Outward DE Archlinux [English]
+        <div class="date">08 December 2025 - code</div>
+    </div>
+    <div class="content">
+        <p><img src="/assets/img/outwardbanner.jpg" alt="outwardbanner"></p>
+<p>One of the best game I&#39;ve ever played on Steam, is Outward (Definitive Edition). I love this game so much I&#39;ve created a <a href="https://www.youtube.com/@GameOnArch">youtube channel</a> about it. Not so much contents, but it&#39;s the furthest I&#39;ve ever done for a game.</p>
+<p>So, last year my old computer died for good. And I&#39;ve saved up enough money to built another one, so I bought:</p>
+<ul>
+<li>Ryzen 7 5700G</li>
+<li>ASUS PRIME B450M-A II</li>
+<li>KLEVV DDR4 Value Series PC21300 2666MHZ 32GB (2x16GB)</li>
+<li>XFX RX 6600 8GB SPEEDSTER SWFT 210</li>
+<li>Super Flower Leadex III Gold 650 W</li>
+</ul>
+<p>I decided to install linux on it (and I got all AMD, it should be great on linux), because it seems now I can enjoy my Steam library of Windows Games on linux, almost natively, using proton.</p>
+<p>You see, my last gpu was GTX 1060 6GB, so I thought RX 6600 is at least an upgrade. And I got it for the same price as brand new GTX 1060 6GB many years ago, so I considered it a great upgrade. For the same price (even with inflation), it has newer chip and bigger memory.</p>
+<p>I&#39;m pretty disappointed. The last time I played Outward on my old computer using GTX 1060 6GB, I got around 60fps on average. And on my new computer, I only got around 70fps. Only around 10fps upgrade. I tried lowering my visual settings (I played on highest), fps are the same more or less. Well, at least the price is the same, and my GTX 1060 died anyway, so let&#39;s say it&#39;s the same GPU.</p>
+<p>I played Outward Definitive Edition, and explore it&#39;s DLC. I traveled to one of its DLC Area, Antique Plateau, and start my adventure there. </p>
+<p>But another problem hit me. You see, when you arrived at Antique Plateau, you start on Harmattan, a city. When I go outside the city, suddenly the fps drop, the game visual stutter badly. I don&#39;t have this problem before. Even with supposedly weaker GPU (being NVIDIA, on Linux, and older generation too, with smaller memory). Something must be wrong.</p>
+<p>I tried another game. This time Dark Souls 3. I played DS3 and got 60fps. Sometimes lower. On my old computer, I remember higher fps than this. This is console level fps.</p>
+<p>I look for solutions online. Many times searching, I forgot how I came up with it, but I read something about ASPM (Active State Power Management). On RX 6600, there&#39;s this setting that make the GPU use lower power mode, basically making its power limited.</p>
+<p>I set my boot option to disable ASPM</p>
+<p><code>sudo nano /etc/default/grub</code></p>
+<pre><code class='hljs'>
+...
+<span class="hljs-attr">GRUB_CMDLINE_LINUX_DEFAULT</span>=<span class="hljs-string">&quot;... pcie_aspm=off&quot;</span>
+...
+</code></pre>
+
+<p>Then I run <code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code> to update my grub.</p>
+<p>I rebooted my computer and start testing.</p>
+<p>I started with DS3 first. The fps doubled. It&#39;s around 130 now. It works. On Outward should work too. I started Outward, and set the FPS limit to 999. It worked! My fps doubled too in Outward. And Antique Plateau no longer stutter. I continued to play with my newfound upgrades.</p>
+<p>But that don&#39;t last long. Most of my playtime is flawless. But at some places, like Kazite Bandit Cave and Corrupted Tombs, my games starting to CTD (quit out, close to desktop). After many testing, I found a pattern, that everytime something with complex color and light shine (i don&#39;t know the term, something like blinding light) like Arcane Elemental is spawned, it&#39;s start to CTD.</p>
+<p>This time, I started to test many proton version, and got a flawless gameplay again after changing my proton version to 8.0-5 for Outward.</p>
+<p>My experience with this particular game isn&#39;t smooth for the early setup, despite <a href="https://www.protondb.com/app/794260">protondb platinum rank</a>. But now it&#39;s smooth sailing, I even made some build videos. I don&#39;t play much these days because life happens and I barely have any free time for gaming, but I can&#39;t wait until I can play this game again. </p>
+<p>Afterwords note:</p>
+<p>I have many games on my library. Most of them if not all, run perfectly with Proton. Even my non-steam games (and some of them are pirated, i&#39;m sorry), works flawlessly. It just happens that my favorite game, the game that I poured so many hours into, is the one that needs <em>a little</em> hack to be able to be played flawlessly.</p>
+<p>I don&#39;t know. I played more graphics intensive games without ever needing any setup (Red Dead Redemption 2, Ghost of Tsushima, Fallout 4, etc), why Outward being the one that needs special care?</p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+    </footer>
+</body>
+
+</html>
