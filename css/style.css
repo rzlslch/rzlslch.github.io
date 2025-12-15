@@ -485,6 +485,16 @@ a.btn-emboss.full {
   /* or center */
 }
 
+.category-blog,
+.category-code,
+.category-kbd,
+.category-vape {
+  width: 100%;
+  display: block;
+  padding: 0 4px;
+  margin-bottom: 4px;
+}
+
 .category-blog {
   background-color: green;
   color: #fff;
