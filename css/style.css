@@ -146,6 +146,7 @@ body .home .year {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 .nowrap {
