@@ -42,7 +42,7 @@
         <div class="date">17 May 2019 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu&#39;alaikum Warrahmatullah Wabarakatuh</p>
+        <p>Assalamu’alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Pada Odoo 12, untuk dapat menambahkan <code>custom config</code> pada <code>setting</code>, adalah sebagai berikut.</p>
 <p>Pertama adalah dengan membuat <code>fields</code> pada <code>res.config.settings</code></p>
@@ -52,7 +52,6 @@
 
     custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
 </code></pre>
-
 <p>Karena <code>model</code> dari <code>res.config.settings</code> merupakan <code>TransientModel</code>, data yang dimasukkan tidak dapat disimpan dalam <code>model</code> tersebut. Sehingga data tersebut harus disimpan pada <code>model</code> lainnya. Contohnya, data akan disimpan pada <code>res.company</code>. Maka harus dibuatkan field untuk menyimpan data tersebut.</p>
 <pre><code class='hljs'>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">ResCompanyCustom</span>(models.Model):
@@ -60,8 +59,7 @@
 
     custom_field = fields.Char(<span class="hljs-string">&#x27;Custom Config&#x27;</span>)
 </code></pre>
-
-<p>Untuk menyimpan data pada <code>model</code> yang sudah disiapkan, buat akses untuk memanggil fungsi <code>save</code> pada <code>res.config.settings</code>. Tidak seperti <code>model</code> pada umumnya yang menggunakan <code>write</code>, <code>res.config.settings</code> menggunakan <code>create</code> waktu memanggil fungsi <code>save</code>. Maka panggil fungsi <code>create</code> pada model <code>res.config.settings</code>. Dalam fungsi tersebut panggil fungsi untuk menyimpan data yang ada pada <code>model</code> yang dituju. Karena data yang akan disimpan berada pada <code>field custom_field</code>, maka ambil <code>values</code> yang dijalankan ketika melakukan proses <code>create</code> dan simpan pada <code>model</code> yang dituju, yaitu <code>res.company</code>. </p>
+<p>Untuk menyimpan data pada <code>model</code> yang sudah disiapkan, buat akses untuk memanggil fungsi <code>save</code> pada <code>res.config.settings</code>. Tidak seperti <code>model</code> pada umumnya yang menggunakan <code>write</code>, <code>res.config.settings</code> menggunakan <code>create</code> waktu memanggil fungsi <code>save</code>. Maka panggil fungsi <code>create</code> pada model <code>res.config.settings</code>. Dalam fungsi tersebut panggil fungsi untuk menyimpan data yang ada pada <code>model</code> yang dituju. Karena data yang akan disimpan berada pada <code>field custom_field</code>, maka ambil <code>values</code> yang dijalankan ketika melakukan proses <code>create</code> dan simpan pada <code>model</code> yang dituju, yaitu <code>res.company</code>.</p>
 <pre><code class='hljs'>
 <span class="hljs-meta">    @api.model</span>
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">self, values</span>):
@@ -69,7 +67,6 @@
         <span class="hljs-variable language_">self</span>.env.user.company_id.write({<span class="hljs-string">&#x27;custom_field&#x27;</span>: values[<span class="hljs-string">&#x27;custom_field&#x27;</span>]})
         <span class="hljs-keyword">return</span> res
 </code></pre>
-
 <p>Sekarang data telah tersimpan pada <code>model</code> yang dituju.</p>
 <p>Lalu bagaimana cara agar data tersebut dapat ditampilkan pada <code>res.config.settings</code>? Caranya adalah dengan memanggil fungsi <code>default_get</code> yang dijalankan setiap kali sistem mau menampilkan <code>config settings</code>. Fungsi ini akan memasukkan data pada <code>parameter fields</code> pada <code>res.config.settings</code>. Langsung masukkan saja data yang mau ditampilkan pada <code>fields</code> yang dituju.</p>
 <pre><code class='hljs'>
@@ -79,7 +76,6 @@
         res[<span class="hljs-string">&#x27;custom_field&#x27;</span>] = <span class="hljs-variable language_">self</span>.env.user.company_id.custom_field
         <span class="hljs-keyword">return</span> res
 </code></pre>
-
 <p>Maka secara otomatis, <code>res.config.settings</code> akan menampilkan data yang sebelumnya disimpan pada <code>res.company</code></p>
 
 

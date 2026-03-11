@@ -42,45 +42,47 @@
         <div class="date">14 March 2021 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu&#39;alaikum Warahmatullah Wabarakatuh</p>
+        <p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
-<p>Pada kesempatan kali ini saya memutuskan untuk bereksperimen dengan micro controller. Lebih tepat nya Arduino Pro Micro (Leonardo). Saya menambahkan modul nrf24l01+ sebagai transreceiver. </p>
+<p>Pada kesempatan kali ini saya memutuskan untuk bereksperimen dengan micro controller. Lebih tepat nya Arduino Pro Micro (Leonardo). Saya menambahkan modul nrf24l01+ sebagai transreceiver.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Barang</th>
-<th align="right">Harga (Rp)</th>
+<th style="text-align:left">Barang</th>
+<th style="text-align:right">Harga (Rp)</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">2 pro micro @ 60rb</td>
-<td align="right">120.000</td>
+<tbody>
+<tr>
+<td style="text-align:left">2 pro micro @ 60rb</td>
+<td style="text-align:right">120.000</td>
 </tr>
 <tr>
-<td align="left">2 module nrf24l01+ @13rb</td>
-<td align="right">26.000</td>
+<td style="text-align:left">2 module nrf24l01+ @13rb</td>
+<td style="text-align:right">26.000</td>
 </tr>
 <tr>
-<td align="left">breadboard</td>
-<td align="right">15.000</td>
+<td style="text-align:left">breadboard</td>
+<td style="text-align:right">15.000</td>
 </tr>
 <tr>
-<td align="left">kabel jumper pelangi</td>
-<td align="right">20.000</td>
+<td style="text-align:left">kabel jumper pelangi</td>
+<td style="text-align:right">20.000</td>
 </tr>
 <tr>
-<td align="left">2 kabel data usb-micro @15rb</td>
-<td align="right">30.000</td>
+<td style="text-align:left">2 kabel data usb-micro @15rb</td>
+<td style="text-align:right">30.000</td>
 </tr>
 <tr>
-<td align="left">dioda 1n4148 x100</td>
-<td align="right">20.000</td>
+<td style="text-align:left">dioda 1n4148 x100</td>
+<td style="text-align:right">20.000</td>
 </tr>
 <tr>
-<td align="left"><strong>Total</strong></td>
-<td align="right"><strong>231.000</strong></td>
+<td style="text-align:left"><strong>Total</strong></td>
+<td style="text-align:right"><strong>231.000</strong></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>Saya mempelajari bagaimana cara berkirim data menggunakan modul nrf24l01+ untuk menggantikan interaksi wireless dengan bluetooth. Saya pernah punya pengalaman yang kurang mengenakkan dengan bluetooth. Waktu itu saya menggunakan bluefruit feather untuk membuat keyboard wireless bluetooth. Tapi waktu digunakan delaynya kerasa banget. Apalagi biasanya koneksi nya nyendat-nyendat. Kadang masuk, kadang enggak. Disitu saya udah trauma. Apalagi untuk keyboard, latency itu cukup berpengaruh besar dalam kenyamanan penggunaan.</p>
 <p>Akhirnya saya memutuskan untuk mempelajari, kira-kira apa yang bisa dibuat untuk menggantikan bluetooth sebagai media koneksi wireless ini. Dan dari situ lah saya menemukan nrf24l01. Modul ini menggunakan modul radio 2.4Ghz, sehingga lebih reliable untuk dijadikan media wireless. Meskipun tidak seperti bluetooth yang langsung bisa konek ke receiver bluetooth apapun, koneksi radio ini harus ada transmitter dan receiver. Nah oleh karena itu, saya memutuskan untuk memulai mempelajari nya lebih dalam. Kebetulan saya baru saja memiliki kesempatan untuk mencoba merealisasikan apa yang selama ini saya idam-idamkan.</p>
 <p>Dimulai dari, bagaimana cara menghubungkan modul nrf24l01 ke microcontroller yang saya punya?</p>
@@ -106,7 +108,6 @@ RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<
     delay(<span class="hljs-number">2000</span>);
 }
 </code></pre>
-
 <p>Sedangkan untuk receiver nya</p>
 <pre><code class='hljs'>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;RF24.h&quot;</span></span>
@@ -137,7 +138,6 @@ RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<
     delay(<span class="hljs-number">20</span>);
 }
 </code></pre>
-
 <p>Setelah saya upload kodingan tersebut ke masing-masing pro micro nya, saya sudah mulai bisa mengujicoba perihal koneksi dan data yang saling kirim dan terima. Ketika data sudah berhasil terkirim dan diterima, maka sampai sejauh ini modul nrf24l01+ sudah bekerja sesuai fungsinya.</p>
 <p>Tinggal ambil keputusan, mau dibuat apakah modul ini?</p>
 <p>Sebenarnya saya sudah memutuskan mau dibuat apa percobaan ini. Yaitu dibuat untuk membangun mechanical keyboard custom dengan fitur wireless yang menggunakan transreceiver 2.4Ghz. Dan saya juga sudah sedikit riset tentang matrix keyboard.</p>
@@ -146,8 +146,7 @@ RF24 <span class="hljs-title function_">radio</span><span class="hljs-params">(<
 <p>Baiklah sekian dulu field report riset arduino saya, untuk part berikutnya saya akan bahas tentang penggunaan matrix dalam rangkaian.</p>
 <br>
 <br>
-
-<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
 
 
         <div class="back">

@@ -42,13 +42,12 @@
         <div class="date">27 June 2022 - kbd</div>
     </div>
     <div class="content">
-        <p>Assalamu&#39;alaikum Warahmatullah Wabarakatuh</p>
+        <p>Assalamu’alaikum Warahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
-<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD. </p>
+<p>Kali ini saya akan membahas <a href="https://zmk.dev/"><strong>ZMK</strong></a>. Di post sebelumnya, saya membahas tentang keyboard baru yang saya build menggunakan nrfmicro sebagai controller nya, dan zmk sebagai firmware nya. Dan ini gambar keyboard nya, HD.</p>
 <p><img src="/assets/img/keyboar_wkl.jpg" alt="keyboard wkl"></p>
 <br>
 <br>
-
 <hr>
 <p>Oke langsung saja.</p>
 <p>Di dokumentasi nya sendiri, zmk ini cukup jelas dan to the point. Jadi saya langsung ikuti aja. Mulai dari setup sampek bikin shield sendiri.</p>
@@ -81,7 +80,6 @@ row-gpios
         , &lt;&amp;pro_micro_d <span class="hljs-number">2</span> (<span class="hljs-variable constant_">GPIO_ACTIVE_HIGH</span> |<span class="hljs-params"> GPIO_PULL_DOWN)&gt;
         , &lt;&amp;pro_micro_d 0 (GPIO_ACTIVE_HIGH </span>| <span class="hljs-variable constant_">GPIO_PULL_DOWN</span>)&gt;
 </code></pre>
-
 <p>Dan kecenya lagi, di zmk juga bisa matrix-transform. Apa itu matrix-transform? Kita kan kalo bikin pcb, untuk mbagi pin yang terbatas biar jadi banyak, tombol-tombol nya dibikin matrix kan. Dan untuk mengakomodasi pin-pin yang terbatas kadang ada tombol yang letak nya di matrix ga sesuai sama letaknya di tampilan.</p>
 <p>Misal. Kita ada micro controller yang punya 16 pin. Kita mau buat keyboard 60% misalkan.</p>
 <p>Di keyboard 60% itu kan tampilan matrix tombolnya 14 kolom x 5 baris, dengan total 61 tombol. Berarti micro controller nya ga cukup untuk mengakomodasi 14x5 matrix. Dia butuh minimal 19 pin.</p>
@@ -93,17 +91,16 @@ row-gpios
 <p><img src="/assets/img/zmk_firmware.JPG" alt="zmk-firmware"></p>
 <p>Nrfmicro ini bootloader nya keren. Jadi dia itu modelnya kayak flashdisk. Tinggal drag&amp;drop aja firmware yang barusan dibuild.</p>
 <p><img src="/assets/img/bootloader.JPG" alt="bootloader"></p>
-<p>Udah jadi. Kombinasi zmk dan nrfmicro bener-bener pas sih menurut saya. Ga pake ribet (kecuali waktu bikin overlay gara-gara wiki ga diupdate). </p>
+<p>Udah jadi. Kombinasi zmk dan nrfmicro bener-bener pas sih menurut saya. Ga pake ribet (kecuali waktu bikin overlay gara-gara wiki ga diupdate).</p>
 <br>
 <br>
-
 <hr>
 <p>Sebenernya di build kali ini itu ada satu yang kelewatan. Saya ga bikin switch on/off buat keyboard nya. Jadi dia ga bisa mati alias hidup terus. Ini saya kasih baterei 2000mah, dan pemakaian dayanya lumayan hemat sih. Dari pertama kali build keyboard ini (2022-06-22) sampai saya nulis artikel ini (2022-06-27) cuman berkurang 2%. Berarti kira-kira dia makan 0.5%/hari. Kalo 100% berarti bisa tahan kurang lebih setengah tahun ya baru butuh dicas lagi.</p>
 <p>Oh iya, lubang usb di case nya juga pas banget. Ga nyangka.</p>
 <p><img src="/assets/img/usb_c.jpg" alt="usb c">
 <br>
 <br></p>
-<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
 <p><a href="/custom-keyboard-pt-1">Part 1</a>
 <a href="/custom-keyboard-pt-2">Part 2</a>
 <a href="/custom-keyboard-pt-3">Part 3</a></p>

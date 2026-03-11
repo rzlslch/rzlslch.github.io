@@ -47,7 +47,11 @@ body th,
 body td {
   border: 1px solid;
   border-collapse: collapse;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
+}
+
+td {
+  vertical-align: top;
 }
 
 body table {

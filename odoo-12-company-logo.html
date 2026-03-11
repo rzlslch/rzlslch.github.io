@@ -42,13 +42,12 @@
         <div class="date">20 May 2019 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu&#39;alaikum Warrahmatullah Wabarakatuh</p>
+        <p>Assalamu’alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Pada Odoo 12, untuk menambahkan <code>image</code> logo pada header tidak lagi menggunakan</p>
 <pre><code class='hljs'>
 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">&quot;company.logo&quot;</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">&quot;&#x27;data:image/png;base64,%s&#x27; %company.logo&quot;</span>/&gt;</span>
 </code></pre>
-
 <p>melainkan dengan menggunakan</p>
 <pre><code class='hljs'>
 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">t-if</span>=<span class="hljs-string">&quot;company.logo&quot;</span> <span class="hljs-attr">t-att-src</span>=<span class="hljs-string">&quot;image_date_uri(company.logo)&quot;</span>/&gt;</span>

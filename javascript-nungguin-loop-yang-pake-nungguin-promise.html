@@ -42,7 +42,7 @@
         <div class="date">11 February 2021 - code</div>
     </div>
     <div class="content">
-        <p>Assalamu&#39;alaikum Warrahmatullah Wabarakatuh</p>
+        <p>Assalamu’alaikum Warrahmatullah Wabarakatuh</p>
 <p>Bismillahirrahmanirrahim</p>
 <p>Jadi begini, kemarin waktu ngoding kerjaan, saya nemu trik yang lumayan asik tentang loop yang digabungin sama <code>Promise</code>. Seperti yang kita tahu, <code>Promise</code> kan buat nungguin hasil ya. Kira-kira seperti itu lah.</p>
 <p>Misal seperti self running function yang kayak ini</p>
@@ -59,7 +59,6 @@
         })
 })()
 </code></pre>
-
 <p>Nah, sudah bisa ngerti kan gunanya <code>Promise</code>?</p>
 <p>Lalu ada suatu kasus. Dimana ada lebih dari satu <code>Promise</code>, dan hasil dari semua <code>Promise</code> tersebut harus ada dulu sebelum menjalankan fungsi yang lain. Misal gini</p>
 <pre><code class='hljs'>
@@ -72,8 +71,7 @@
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;jalankan ini ketika semua promise selesai&#x27;</span>);
 })()
 </code></pre>
-
-<p>Biasanya, kasus seperti ini mesti manggil <code>async/await</code> untuk menghindari callback hell yang terjadi di dalam <code>.then</code> wkwkwkwk.. Tapi nampaknya saya lupa kalo ada <code>Promise.all</code>.</p>
+<p>Biasanya, kasus seperti ini mesti manggil <code>async/await</code> untuk menghindari callback hell yang terjadi di dalam <code>.then</code> wkwkwkwk… Tapi nampaknya saya lupa kalo ada <code>Promise.all</code>.</p>
 <pre><code class='hljs'>
 (<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">var</span> promise1 = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>( ... );
@@ -86,9 +84,8 @@
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;jalankan ini ketika semua promise selesai&#x27;</span>);
 })()
 </code></pre>
-
 <p>Kelebihan <code>Promise.all</code> sendiri ada pada error handling nya. Kalo pake banyak <code>await</code>, error bakal dimunculkan ketika <code>Promise</code> yang berjajar di return semua. Sedangkan pada <code>Promise.all</code>, ketika ada salah satu yang error, saat itu lah bakal di return error nya dan berhenti sampai sana. Dan ini mantap kali kalo dipake di dalem loop.</p>
-<p>Misal </p>
+<p>Misal</p>
 <pre><code class='hljs'>
 <span class="hljs-keyword">const</span> array = [ ... ] <span class="hljs-comment">// misal ini data array buat ngeloop</span>
 
@@ -107,13 +104,11 @@
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;sudah selesai semua&#x27;</span>);
 })()
 </code></pre>
-
 <p>Jadi untuk nungguin loop yang di dalem nya ada promise yang juga harus ditungguin, bisa pake cara seperti diatas. Sebenernya masih banyak cara lain, misal pake <code>asyncForEach</code> atau yang lain, tapi menurut saya pake <code>Promise.all</code> enak aja dipake. Selain itu error handling nya juga ga nunggu lama-lama, nda harus semua <code>Promise</code> selesai dulu.</p>
 <p>Konklusi nya, pakailah <code>Promise.all</code>. Udah sih itu aja.</p>
 <br>
 <br>
-
-<p>Wassalamu&#39;alaikum Warrahmatullah Wabarakatuh.</p>
+<p>Wassalamu’alaikum Warrahmatullah Wabarakatuh.</p>
 
 
         <div class="back">
