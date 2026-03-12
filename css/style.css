@@ -6,8 +6,10 @@ body {
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
-  background-color: #EEECE7;
+  background-color: #FBF6FA;
+  /* background-color: #EEECE7; */
   /* background-color: #d7d8d7; */
+  color: #555555;
   font-family: "Inter", sans-serif;
   font-size: 18px;
   line-height: 1.4;
@@ -22,7 +24,7 @@ h2 {
 .meta,
 .date,
 .category {
-  font-family: "IBM Plex Mono", monospace;
+  /* font-family: "IBM Plex Mono", monospace; */
   font-size: 0.85rem;
   letter-spacing: -0.5px;
 }
@@ -45,7 +47,7 @@ body code {
 body table,
 body th,
 body td {
-  border: 1px solid;
+  border: 1px solid #D6D6D6;
   border-collapse: collapse;
   padding: 0.5rem;
 }
@@ -70,10 +72,20 @@ body .center-image {
 
 body .header {
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #D6D6D6;
   /* display: flex;
   align-items: flex-end; */
 
+}
+
+body .header a,
+body .header a:active,
+body .header a:visited,
+body .header a:link,
+body .header a:hover,
+body .header a:focus {
+  color: #555555;
+  text-decoration: none;
 }
 
 body .menutitle {
@@ -100,8 +112,8 @@ body .kisi-kisi {
 
 body .post .title {
   font-size: 1.6rem;
-  border-bottom: 1px solid #b4b4b4;
-  padding-top: 1rem;
+  /* border-bottom: 1px solid #b4b4b4; */
+  padding-top: 1.8rem;
   padding-bottom: 0.5rem;
   line-height: 110%;
 }
@@ -139,13 +151,14 @@ body .home td {
 }
 
 body .home .year {
-  padding-top: 0.8rem;
+  padding-top: 1.8rem;
   padding-bottom: 0.5rem;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .content {
-  color: #222222;
+  color: #555555;
 }
 
 img {
@@ -210,7 +223,6 @@ body .post .title {
 
   body .header {
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid;
     display: flex;
     align-items: flex-end;
   }
@@ -252,8 +264,8 @@ body .post .title {
   }
 
   body .home .year {
-    font-size: 1.4rem;
-    padding-top: 0.8rem;
+    font-size: 1.8rem;
+    padding-top: 1.8rem;
   }
 
   nav,
@@ -494,26 +506,50 @@ a.btn-emboss.full {
 .category-code,
 .category-kbd,
 .category-vape {
-  width: 100%;
-  display: block;
-  padding: 0 4px;
+  /* width: 100%; */
+  /* display: block; */
+  padding: 4px 10px;
   margin-bottom: 4px;
+  border-radius: 20px;
 }
 
 .category-blog {
-  background-color: green;
-  color: #fff;
+  background-color: #E8EBE4;
+  color: #70747B;
 }
 
 .category-kbd {
-  background-color: yellow;
+  background-color: #F3E9E7;
+  color: #70747B;
 }
 
 .category-code {
-  background-color: red;
-  color: #fff;
+  background-color: #F5E7EE;
+  color: #70747B;
 }
 
 .category-vape {
-  background-color: lightblue;
+  background-color: #EEEEF4;
+  color: #70747B;
+}
+
+.post-title {
+  border-bottom: 1px solid #e4e4e4;
+  padding: 1rem 0;
+  padding-bottom: 1.5rem;
+}
+
+.post-title a,
+.post-title a:link,
+.post-title a:visited,
+.post-title a:hover,
+.post-title a:focus,
+.post-title a:active {
+  color: #555555;
+  text-decoration: none;
+}
+
+.stat-desc {
+  font-size: smaller;
+  color: #b4b4b4;
 }
