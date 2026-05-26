@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+        Single GPU Passthrough
+        
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about/">about</a>
+        <a href="/resume/">resume</a>
+        <a href="/contact/">contact</a>
+    </div>
+</div>
+    <div class="title">
+        Single GPU Passthrough
+        <div class="date stat-desc">
+            <span class="category-linux">linux</span>
+            <span>⚬</span>
+            <span>24 May 2026</span>
+        </div>
+    </div>
+    <div class="content">
+        <h1><a name="preambule">Preambule</a></h1>
+<p><em>Kalo mau skip ke teknis nya, langsung kesini</em> <a href="#technicality">technicality</a></p>
+<p>Dalam menggunakan sistem operasi, sebenarnya kita punya banyak pilihan. Windows, Macos, Linux, dll. Saya sendiri pake linux. Semua kebutuhan berkomputer saya sudah tercukupi. Tapi ada satu case yang beneran saya butuh (pengen) Windows. Dan ini spesifik sekali.</p>
+<p>Jadi gini ya, saya itu dulu suka main game, salah satu nya Fallout 4.</p>
+<pre><code>  Lo steam proton kan bisa buat main Fallout 4 di linux
+</code></pre>
+<p>Bentar.</p>
+<p>Seperti game bethesda yang lain, Fallout 4 kurang afdol kalo ga di mod</p>
+<pre><code>  Bisa kok nge-mod Fallout 4 pake MO2 di linux
+</code></pre>
+<p>Iya, bisa. Saya juga uda nge-mod Fallout 4 di linux juga.</p>
+<p>Problem nya adalah, ada beberapa mod, khususnya yang pake F4SE ketambahan Microsoft Visual C++ Redistributable for Visual Studio 2019 dan beberapa framework modding khusus, <em>simply didn’t work, at all, at least for me</em>. Salah satu mod nya namanya <strong>TRUE DAMAGE</strong>. Nge-mod di Windows itu gampang gampang susah. Gampang, tapi kadang susah, banyak gampangnya, tapi kadang ada susahnya. Di linux, hmmm… Sampai sekarang saya masih belum bisa buat bikin mod ini berjalan dengan baik di linux. Jalan mod nya, ga ctd, tapi fungsionalitas mod nya jadi ngaco.</p>
+<p>Gini ya, selama pake linux, saya jadi males cari akal2an. Driver, uda tersedia di kernel dan repo. Aplikasi, tinggal install ga perlu cari installer. Dan saya pake archlinux, punya AUR, yang mana kalo butuh aplikasi third party hampir pasti ada disana, dan tinggal install. Saya sekarang jadi manja. Udah males utak atik. Jadinya kalo ketemu problem mod2an gini, jadi males. Kita bahas lebih dalem kapan-kapan. Kembali ke pokok permasalahan.</p>
+<p>Saya butuh (pengen) Windows (yang mana nantinya ternyata saya udah males maen game, tapi itu cerita buat lain waktu). Di komputer saya, udah terinstall linux. Buat orang yang butuh pakai dua atau lebih sistem operasi, ada beberapa cara yang bisa ditempuh. Coba kita aplikasikan.</p>
+<p>Sebelumnya, ini adalah spec dari komputer saya.</p>
+<ul>
+<li>AMD Ryzen 7 5700G, 32GB RAM, RX6600</li>
+<li>4 Drive, 1 SSD untuk root (/) ext4, 3 HDD untuk penyimpanan ext4 juga</li>
+</ul>
+<p>Sejauh ini, saya tahu ada 3 kategori general untuk mengatasi permasalahan ini</p>
+<ol>
+<li><strong>Dual boot atau dual drive</strong></li>
+</ol>
+<p>Dual boot itu dengan menginstall 2 macam atau lebih sistem operasi dalam satu komputer. Biasanya dengan membagi satu disk menjadi beberapa partisi, lalu menginstall boot manager. Nantinya waktu menghidupkan komputer, ada pilihan mau masuk ke sistem operasi yang mana. Kalo dual drive, kita punya beberapa drive (disk) untuk setiap sistem operasi. Kalo mau boot ke sistem operasi tertentu, kita harus masuk ke BIOS, terus milih mau boot ke drive (disk) yang mana.</p>
+<p>Bedanya apa?</p>
+<p>Dual boot, lebih hemat. Cuman dengan 1 SSD misal, kita tinggal buat beberapa partisi. Dulu saya sering pakai cara ini waktu awal-awal pake linux. Problemnya selalu sama. Windows ngerusak boot manager, benerin nya repot. Kadang kalo salah waktu install, bisa kehapus satu partisi (saya pernah).</p>
+<p>Dual drive, masalah biaya. Kita butuh dua atau lebih drive (disk) untuk setiap sistem operasi.</p>
+<p>Kayaknya ga cocok dua-duanya buat kondisi saya sekarang. Yang pertama, saya cuman punya 1 SSD, sudah terinstall linux, data saya uda banyak. Dual boot harus mecah partisi, dan ga bisa mecah partisi tanpa ngehapus semua data. Yang kedua, saya lagi ga ada duit yang bisa dihambur-hamburkan cuman buat nge-mod Fallout 4. Dan SSD sekarang mahal cuy. HDD gimana? Gila ya, nginstall windows di HDD. HDD saya juga uda banyak data nya.</p>
+<ol start="2">
+<li><strong>Punya device sendiri untuk setiap sistem operasi</strong></li>
+</ol>
+<p>Buat beli SSD aja masih ga ada, gimana mau build pc khusus buat Windows?</p>
+<ol start="3">
+<li><strong>Virtualization</strong></li>
+</ol>
+<p>Jadi virtualization itu basically gini, kita menginstall sistem operasi diatas sistem operasi lain yang sedang berjalan. Untuk sistem operasi yang sedang berjalan, disebut host. Untuk sistem operasi yang diinstall secara virtual, disebut guest. Normalnya, sistem operasi yang diinstall secara virtual ini akan menggunakan perangkat virtual juga. Misal, CPU, GPU, hard disk, ethernet, semua virtual, bukan perangkat asli yang ada di komputer. Kelemahan cara ini adalah, karena perangkat nya virtual, kita jadi ga bisa maen Fallout 4 disana.</p>
+<p>Tapi ada teknik yang dinamakan PCI Passthrough yang memungkinkan sistem operasi virtual untuk mengakses langsung perangkat PCI (dalam hal ini GPU atau VGA ya). Ini yang saya pilih. Jadi meski pake virtualization, saya bisa akses RX6600 dari dalam guest. Bisa buat maen Fallout 4.</p>
+<p>Kekurangan dari cara ini, yang pertama, ribet. Dan dari pengalaman saya, apa yang bisa diaplikasikan sekarang, belum tentu bisa work terus-terusan. Soalnya sebenernya saya udah berulang kali pake cara ini. Awalnya bisa, tapi tiba-tiba suatu hari ga bisa dijalankan. Waktu itu ga tau penyebabnya dan males juga troubleshooting.</p>
+<pre><code>  Katanya sekarang manja, males utak-atik, la ini kan juga utak-atik
+</code></pre>
+<p>Mungkin wording nya yang salah. Saya males utak-atik buat hasil yang ga pasti. Utak-atik modding di linux, yang saya ga tau nanti hasil akhirnya bakal work atau enggak, yang kalo ga work ya berarti saya buang-buang waktu. Kalo utak-atik passthrough ini hasilnya jelas bisa work, konsepnya jelas, tinggal bener ga setting nya, gitu aja.</p>
+<p>Yang kedua, namanya virtualisasi, kecuali komponen yang di passthrough, ga bisa pakai kemampuan komponen secara penuh. Contohnya, CPU dan RAM. Karena pada dasarnya kita menjalankan sistem operasi diatas sistem operasi lain yang sedang berjalan, maka alokasi penggunaan nya tidak bisa dimaksimalkan. CPU saya ada 16 logical CPU (8 cores 16 threads), yang saya alokasikan cuman 8, ga bisa seluruhnya karena dipakai juga sama host. RAM saya 32GB saya alokasikan 16GB, dengan alasan yang sama. Tapi cukup lah ya, masa 8cx16GB ga cukup buat main Fallout 4 (hint: terlalu cukup)</p>
+<p>Dan di bawah, adalah cara saya untuk setup gpu passthrough dengan hasil yang paling konsisten.</p>
+<h1><a name="technicality">Technicality</a></h1>
+<p><em>Untuk alasan kenapa saya menggunakan single gpu passthrough, scroll keatas atau gunakan link ini</em> <a href="#preambule">preambule</a></p>
+<p><strong>note:</strong> Karena saya menggunakan Archlinux, maka perintah yang digunakan pada pembahasan di bawah adalah perintah dari Archlinux.</p>
+<p><strong>disclaimer:</strong> Bagi yang mengikuti langkah-langkah pada pembahasan ini, segala sesuatu yang terjadi adalah hasil perbuatan dan tanggung jawab anda sendiri.</p>
+<br>
+<h3>Enable Virtualization</h3>
+<p>Pertama, kita butuh mode UEFI di motherboard kita dan cek apakah CPU kita support virtualization (harusnya motherboard dan cpu modern sudah support 2 hal ini). Buat make sure, masuk ke BIOS dan aktifkan SVM/AMD-V untuk AMD CPU, atau Intel VT-x/VT-d untuk Intel CPU. Selain AMD/Intel saya ga tau ya</p>
+<p>Set kernel parameter yang ada di grub (asumsi pake grub ya, kalo pake yang lain sesuaikan sendiri) untuk enable iommu</p>
+<p>edit <code>/etc/default/grub</code></p>
+<p><strong>amd cpu</strong></p>
+<pre><code class="hljs">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;... amd_iommu=on iommu=pt video=efifb:off ...&quot;</span>
+</code></pre>
+<p><strong>intel cpu</strong></p>
+<pre><code class="hljs">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;... intel_iommu=on iommu=pt ...&quot;</span>
+</code></pre>
+<br>
+<p>Kita update grub nya dengan</p>
+<pre><code class="hljs">grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<p>lalu restart/reboot</p>
+<br>
+<h3>Check Hardware</h3>
+<p>Sekarang kita cek dulu <strong>IOMMU group</strong> dari GPU yang akan kita passthrough</p>
+<pre><code class="hljs"><span class="hljs-built_in">shopt</span> -s nullglob
+<span class="hljs-keyword">for</span> g <span class="hljs-keyword">in</span> `find /sys/kernel/iommu_groups/* -maxdepth 0 -<span class="hljs-built_in">type</span> d | <span class="hljs-built_in">sort</span> -V`; <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;IOMMU Group <span class="hljs-variable">${g##*/}</span>:&quot;</span>
+    <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> <span class="hljs-variable">$g</span>/devices/*; <span class="hljs-keyword">do</span>
+        <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\t<span class="hljs-subst">$(lspci -nns ${d##*/})</span>&quot;</span>
+    <span class="hljs-keyword">done</span>;
+<span class="hljs-keyword">done</span>;
+</code></pre>
+<p>Copy paste script diatas ke terminal lalu enter. Kira-kira akan muncul seperti ini</p>
+<pre><code class="hljs">IOMMU Group 0:
+	00:01.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Renoir PCIe Dummy Host Bridge [1022:1632]
+IOMMU Group 1:
+	00:01.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP Bridge [1022:1633]
+IOMMU Group 10:
+	02:00.0 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL Downstream Port of PCI Express Switch [1002:1479]
+IOMMU Group 11:
+	03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23 [Radeon RX 6600/6600 XT/6600M] [1002:73ff] (rev c7)
+IOMMU Group 12:
+	03:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 21/23 HDMI/DP Audio Controller [1002:ab28]
+</code></pre>
+<p>Yang kita butuhkan nanti adalah <strong>VGA compatible controller</strong>. Apabila di dalam IOMMU Group tersebut ada lebih dari 1 komponen, maka nantinya kita harus memasukkan semua komponen yang ada dalam IOMMU Group tersebut. Kebetulan disini tidak ada komponen lain, jadi cukup masukkan satu komponen tersebut saja.</p>
+<p>Perhatikan kode komponen VGA yang mau kita masukkan nantinya, kalau perlu catat (03:00.0)</p>
+<br>
+<h3>Setup Virtual Machine</h3>
+<p>Sekarang saatnya kita install virtual machine nya</p>
+<pre><code class="hljs">pacman -S qemu libvirt edk2-ovmf virt-manager dnsmasq ebtables
+</code></pre>
+<br>
+<p>edit <code>/etc/libvirt/libvirtd.conf</code></p>
+<p>Hapus comment <code>#</code> dan sesuaikan seperti berikut</p>
+<pre><code class="hljs">unix_sock_group = <span class="hljs-string">&quot;libvirt&quot;</span>
+</code></pre>
+<pre><code class="hljs">unix_sock_rw_perms = <span class="hljs-string">&quot;0770&quot;</span>
+</code></pre>
+<pre><code class="hljs">log_filters=<span class="hljs-string">&quot;3:qemu 1:libvirt&quot;</span>
+log_outputs=<span class="hljs-string">&quot;2:file:/var/log/libvirt/libvirtd.log&quot;</span>
+</code></pre>
+<br>
+<p>edit <code>/etc/libvirt/qemu.conf</code></p>
+<p>Hapus comment <code>#</code> dan sesuaikan seperti berikut (ganti <code>user</code> dengan nama user saat ini)</p>
+<pre><code class="hljs">user = <span class="hljs-string">&quot;user&quot;</span>
+</code></pre>
+<pre><code class="hljs">group = <span class="hljs-string">&quot;user&quot;</span>
+</code></pre>
+<br>
+<p>Tambahkan user ke group2 berikut (ganti <code>user</code> dengan nama user saat ini)</p>
+<pre><code class="hljs">usermod -aG kvm,input,libvirt user
+</code></pre>
+<p>Setelah itu enable service nya</p>
+<pre><code class="hljs">systemctl <span class="hljs-built_in">enable</span> --now libvirtd
+virsh net-start default
+virsh net-autostart default
+</code></pre>
+<br>
+<h3>Installation Prep</h3>
+<p>Download virtio-win disini <a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.285-1/virtio-win-0.1.285.iso">virtio-win.iso</a></p>
+<p>Siapkan iso Windows yang bakal dipake</p>
+<p>Langsung saja buka virt-manager (Virtual Machine Manager), buat baru, <strong>ingat-ingat namanya (usahakan tanpa spasi, misal “win10virt”)</strong>, di akhir centang <strong>Customize before install</strong></p>
+<p>Di Overview, set Chipset ke <strong>Q35</strong> dan firmware ke <strong>UEFI</strong></p>
+<p>Pada CPU, centang Configuration ke <strong>host-passthrough</strong></p>
+<p>Pada Memory, centang <strong>Enable shared memory</strong>, ini akan berguna nanti</p>
+<p>Pada SATA Disk, pilih Disk bus ke <strong>VirtIO</strong></p>
+<p>Pada NIC, pilih Device model ke <strong>virtio</strong></p>
+<p>Add hardware, Storage, <strong>Select or create custom storage</strong>, Manage, pilih <strong>virtio-win.iso</strong> yang sudah didownload tadi, Device type nya <strong>CDROM device</strong></p>
+<p>Sekarang, klik <strong>Begin Installation</strong>, install Windows nya. Disini partisi drive nya ga keluar, maka Load driver dan pilih yang sesuai sama Windows yang lagi diinstall</p>
+<p>Install Windows</p>
+<p>Setelah Windows selesai diinstall, buka virtio, kebaca sebagai mount, install virtio win guest</p>
+<p>Setelah itu shutdown, dan kita akan mulai utak-atiknya</p>
+<br>
+<h3>Optional: Shared Drive</h3>
+<p>Kalo butuh shared drive, drive atau storage yang bisa diakses host dan guest, sebelum shutdown kita install WinFSP. Bisa di download <a href="https://winfsp.dev/rel/">disini</a>.</p>
+<p>Setelah diinstall, masuk ke Services, cari VirtIOFS Service, startup  diset ke Automatic</p>
+<br>
+<h3>ROM/vBIOS</h3>
+<p>Cek GPU</p>
+<pre><code class="hljs">lspci -k | grep -EA3 <span class="hljs-string">&#x27;VGA|3D|Display&#x27;</span>
+</code></pre>
+<p>Akan keluar kira-kira seperti ini</p>
+<pre><code class="hljs">03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23 [Radeon RX 6600/6600 XT/6600M] (rev c7)
+	Subsystem: XFX Limited Device 6505
+	Kernel driver <span class="hljs-keyword">in</span> use: amdgpu
+	Kernel modules: amdgpu
+</code></pre>
+<p>Disana kita bisa cari aja di google, misal “vbios xfx swft 210 rx 6600”</p>
+<p>Atau, bisa kita ambil sendiri</p>
+<p>Caranya</p>
+<pre><code class="hljs"><span class="hljs-built_in">echo</span> 1 &gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /sys/bus/pci/devices/0000:03:00.0/rom
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /sys/bus/pci/devices/0000:03:00.0/rom &gt; path/to/dump/vbios.rom
+<span class="hljs-built_in">echo</span> 0 &gt; <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /sys/bus/pci/devices/0000:03:00.0/rom
+</code></pre>
+<p>Sesuaikan kode device nya dengan device yang ada</p>
+<p>Untuk AMD, kita ga perlu patch vbios yang ada</p>
+<p>Tapi untuk NVIDIA, kita harus patch dulu vbios nya dengan menggunakan aplikasi hex editor seperti Okteta atau Ghex</p>
+<p>Cari string “VIDEO”, dan hapus semua sebelum HEX value 55</p>
+<p>Setelah itu simpan file vbios nya, ini nanti akan kita pakai</p>
+<pre><code class="hljs"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> /usr/share/vgabios
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> ./vbios.rom /usr/share/vgabios
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> -R 644 /usr/share/vgabios/vbios.rom
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> username:username /usr/share/vgabios.rom
+</code></pre>
+<p>Ganti username dengan nama user yang kita pakai</p>
+<br>
+<h3>Scripting</h3>
+<p>Buat file executable untuk hooks qemu</p>
+<pre><code class="hljs"><span class="hljs-built_in">mkdir</span> /etc/libvirt/hooks
+<span class="hljs-built_in">touch</span> /etc/libvirt/hooks/qemu
+<span class="hljs-built_in">chmod</span> +x /etc/libvirt/hooks/qemu
+</code></pre>
+<p>Masukkan code ini ke dalam nya</p>
+<pre><code class="hljs"><span class="hljs-meta">#!/usr/bin/env bash</span>
+
+GUEST_NAME=<span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span>
+HOOK_NAME=<span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span>
+STATE_NAME=<span class="hljs-string">&quot;<span class="hljs-variable">$3</span>&quot;</span>
+MISC=<span class="hljs-string">&quot;<span class="hljs-variable">${@:4}</span>&quot;</span>
+
+BASEDIR=<span class="hljs-string">&quot;<span class="hljs-subst">$(dirname $0)</span>&quot;</span>
+
+HOOKPATH=<span class="hljs-string">&quot;<span class="hljs-variable">$BASEDIR</span>/qemu.d/<span class="hljs-variable">$GUEST_NAME</span>/<span class="hljs-variable">$HOOK_NAME</span>/<span class="hljs-variable">$STATE_NAME</span>&quot;</span>
+
+STDIN=$(<span class="hljs-built_in">cat</span>)
+
+<span class="hljs-built_in">set</span> -ex <span class="hljs-comment"># Jika script yang di load error, disini harus ikut error juga.</span>
+LOGFILE=<span class="hljs-string">&quot;/var/log/libvirt-hooks/qemu.log&quot;</span>
+
+<span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">$LOGFILE</span>&quot;</span>)</span>&quot;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;[HOOK DISPATCH] <span class="hljs-subst">$(date)</span>: <span class="hljs-variable">$@</span>&quot;</span> &gt;&gt; <span class="hljs-string">&quot;<span class="hljs-variable">$LOGFILE</span>&quot;</span>
+
+<span class="hljs-comment"># cek apa script yang nanti kita buat exist</span>
+<span class="hljs-keyword">if</span> [ -f <span class="hljs-string">&quot;<span class="hljs-variable">$HOOKPATH</span>&quot;</span> ] &amp;&amp; [ -s <span class="hljs-string">&quot;<span class="hljs-variable">$HOOKPATH</span>&quot;</span> ] &amp;&amp; [ -x <span class="hljs-string">&quot;<span class="hljs-variable">$HOOKPATH</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">eval</span> \&quot;<span class="hljs-variable">$HOOKPATH</span>\&quot; <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$STDIN</span>&quot;</span> <span class="hljs-comment"># Memanggil script sesuai path</span>
+<span class="hljs-keyword">elif</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$HOOKPATH</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> file; <span class="hljs-keyword">do</span>
+        <span class="hljs-comment"># check for null string</span>
+        <span class="hljs-keyword">if</span> [ ! -z <span class="hljs-string">&quot;<span class="hljs-variable">$file</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+          <span class="hljs-built_in">eval</span> \&quot;<span class="hljs-variable">$file</span>\&quot; <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$STDIN</span>&quot;</span>
+        <span class="hljs-keyword">fi</span>
+    <span class="hljs-keyword">done</span> &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-subst">$(find -L <span class="hljs-string">&quot;<span class="hljs-variable">$HOOKPATH</span>&quot;</span> -maxdepth 1 -type f -executable -print;)</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>credit to <a href="https://github.com/SharkWipf">SharkWipf</a></p>
+<p>Jadi script ini fungsinya adalah hook, yang akan dijalankan oleh qemu waktu kita menghidupkan virtual machine (Windows). Setelah selesai menulis script diatas, kita restart dulu libvirt nya buat make sure script nya ke load.</p>
+<pre><code class="hljs">systemctl restart libvirtd
+</code></pre>
+<p>Setelah itu coba jalankan virtual machine nya, lalu shutdown lagi buat ngetest aja</p>
+<p>Kita bisa buka <code>/var/log/libvirt-hooks/qemu.log</code> maka akan keluar log dengan awalan <code>[HOOK DISPATCH]</code> seperti yang ada di script</p>
+<pre><code class="hljs">[HOOK DISPATCH] Fri May 22 18:41:12 WIB 2026: win10virt prepare begin -
+[HOOK DISPATCH] Fri May 22 18:41:18 WIB 2026: win10virt start begin -
+[HOOK DISPATCH] Fri May 22 18:41:26 WIB 2026: win10virt started begin -
+[HOOK DISPATCH] Fri May 22 18:51:06 WIB 2026: win10virt stopped end -
+[HOOK DISPATCH] Fri May 22 18:51:06 WIB 2026: win10virt release end shutdown
+</code></pre>
+<p>Tanda nya script kita uda jalan</p>
+<p>Di log bisa kita lihat bahwa saat kita menjalankan virtual machine, ada beberapa tahap proses. Prepare, Start, Started, Stopped, Release. Dari sana lah nanti kita akan buat script untuk mem-passthrough hardware kita (dalam kasus ini GPU). Kita perlu persiapkan di fase Prepare dan Release.</p>
+<p>Kita harus persiapkan hardware nya agar bisa diakses oleh virtual machine. Hardware itu ga bisa diakses bareng, jadi kita harus diputus dulu akses komputer kita ke hardware. Proses ini dilakukan waktu fase <code>prepare</code> di virtual machine. Kita buat script nya</p>
+<pre><code class="hljs"><span class="hljs-built_in">mkdir</span> -p /etc/libvirt/hooks/qemu.d/win10virt/prepare/begin
+<span class="hljs-built_in">touch</span> /etc/libvirt/hooks/qemu.d/win10virt/prepare/begin/start.sh
+<span class="hljs-built_in">chmod</span> +x /etc/libvirt/hooks/qemu.d/win10virt/prepare/begin/start.sh
+</code></pre>
+<p>ganti win10virt sesuai nama virtual machine yang kita buat tadi</p>
+<p>edit <code>start.sh</code></p>
+<pre><code class="hljs">LOG=<span class="hljs-string">&quot;/var/log/libvirt-hooks/start.log&quot;</span>
+<span class="hljs-built_in">exec</span> &gt;&gt; <span class="hljs-string">&quot;<span class="hljs-variable">$LOG</span>&quot;</span> 2&gt;&amp;1
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span> hook called: <span class="hljs-variable">$0</span> <span class="hljs-variable">$@</span>&quot;</span>
+
+<span class="hljs-built_in">set</span> -x
+
+systemctl stop display-manager <span class="hljs-comment"># pakai ini kalo gnome</span>
+<span class="hljs-comment"># systemctl --user -M YOUR_USERNAME@ stop plasma* # pakai ini kalo plasma</span>
+
+<span class="hljs-keyword">while</span> systemctl is-active --quiet display-manager; <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">sleep</span> 1
+<span class="hljs-keyword">done</span>
+<span class="hljs-built_in">sleep</span> 2  <span class="hljs-comment"># buffer buat nungguin GPU detach</span>
+
+<span class="hljs-built_in">echo</span> 0 &gt; /sys/class/vtconsole/vtcon0/bind
+<span class="hljs-built_in">echo</span> 0 &gt; /sys/class/vtconsole/vtcon1/bind
+
+<span class="hljs-comment"># Unbind EFI Framebuffer</span>
+<span class="hljs-built_in">echo</span> efi-framebuffer.0 &gt; /sys/bus/platform/drivers/efi-framebuffer/unbind
+<span class="hljs-built_in">sleep</span> 2
+<span class="hljs-comment"># Unload NVIDIA kernel modules</span>
+<span class="hljs-comment"># modprobe -r nvidia_drm nvidia_modeset nvidia_uvm nvidia</span>
+
+<span class="hljs-comment"># Unload AMD kernel module</span>
+modprobe -r amdgpu
+
+<span class="hljs-comment"># Detach GPU devices dari host</span>
+<span class="hljs-comment"># Pake kode GPU atau HDMI Audio PCI host device</span>
+virsh nodedev-detach pci_0000_03_00_0
+virsh nodedev-detach pci_0000_03_00_1
+
+<span class="hljs-comment"># Load vfio module</span>
+modprobe vfio-pci
+</code></pre>
+<p>Lalu kita buat kebalikannya untuk ngembalikan hardware yang dipassthrough biar bisa dipake sama host</p>
+<pre><code class="hljs"><span class="hljs-built_in">mkdir</span> -p /etc/libvirt/hooks/qemu.d/win10virt/release/end
+<span class="hljs-built_in">touch</span> /etc/libvirt/hooks/qemu.d/win10virt/release/end/stop.sh
+<span class="hljs-built_in">chmod</span> +x /etc/libvirt/hooks/qemu.d/win10virt/release/end/stop.sh
+</code></pre>
+<p>edit <code>stop.sh</code></p>
+<pre><code class="hljs">LOG=<span class="hljs-string">&quot;/var/log/libvirt-hooks/stop.log&quot;</span>
+<span class="hljs-built_in">exec</span> &gt;&gt; <span class="hljs-string">&quot;<span class="hljs-variable">$LOG</span>&quot;</span> 2&gt;&amp;1
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span> hook called: <span class="hljs-variable">$0</span> <span class="hljs-variable">$@</span>&quot;</span>
+
+<span class="hljs-built_in">set</span> -x
+
+<span class="hljs-comment"># Attach GPU devices ke host host</span>
+<span class="hljs-comment"># kembalikan GPU atau HDMI Audio PCI host device</span>
+virsh nodedev-reattach pci_0000_03_00_0
+virsh nodedev-reattach pci_0000_03_00_1
+
+<span class="hljs-comment"># Unload vfio module</span>
+modprobe -r vfio-pci
+
+<span class="hljs-comment"># Load AMD kernel module</span>
+modprobe amdgpu
+
+<span class="hljs-comment"># Rebind framebuffer ke host</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;efi-framebuffer.0&quot;</span> &gt; /sys/bus/platform/drivers/efi-framebuffer/bind
+
+<span class="hljs-comment"># Load NVIDIA kernel modules</span>
+<span class="hljs-comment"># modprobe nvidia_drm</span>
+<span class="hljs-comment"># modprobe nvidia_modeset</span>
+<span class="hljs-comment"># modprobe nvidia_uvm</span>
+<span class="hljs-comment"># modprobe nvidia</span>
+
+<span class="hljs-comment"># Bind VTconsoles</span>
+<span class="hljs-built_in">echo</span> 1 &gt; /sys/class/vtconsole/vtcon0/bind
+<span class="hljs-built_in">echo</span> 1 &gt; /sys/class/vtconsole/vtcon1/bind
+
+<span class="hljs-comment"># Restart Display Manager</span>
+systemctl start display-manager
+</code></pre>
+<p>Sekarang kita mulai hapus dan tambah hardware nya</p>
+<p>Buka virtual machine kita (bukan dijalankan, buka aja config nya), lalu hapus <strong>Channel Spice</strong>, <strong>Display Spice</strong>, <strong>Video QXL</strong>, <strong>Sound ich</strong>*, <strong>SATA CDROM</strong></p>
+<p><em>Jangan dijalankan dulu apapun yang terjadi</em></p>
+<p>Tambahkan hardware (Add Hardware)</p>
+<ol>
+<li>PCI Host Device, GPU/VGA yang akan di passthrough. Kalo dalam IOMMU Group nya ada device lain, masukkan juga</li>
+<li>PCI Host Device, HD Audio Controller. Ini untuk sound ya. Kalo misal pake headset usb atau koneksi lainnya, nanti masukkan juga.</li>
+<li>USB Device, ini masukkan mouse, keyboard, atau perangkat lain yang nantinya mau dipake di Windows. Misal pake bluetooth dongle, itu dimasukkan juga.</li>
+<li>Optional, shared drive. Filesystem Passthrough, Driver virtiofs, Source path masukkan lokasi yang mau dishare, Target path isi nama Drive yang mau dimunculkan. Misal, namanya “shared_drive”, maka nanti waktu masuk ke Windows, akan muncul drive Z: dengan nama Shared Drive. Nah disini fungsi nya “Enable shared memory” di bagian RAM/Memory. Kalo di Memory belum diset, set sekalian.</li>
+</ol>
+<p>Sekarang, kita buka bagian GPU/VGA. Kita perlu menambahkan vBIOS yang sudah kita siapkan tadi. Buka tab XML lalu ubah kira-kira menjadi seperti ini</p>
+<pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">hostdev</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">&quot;subsystem&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;pci&quot;</span> <span class="hljs-attr">managed</span>=<span class="hljs-string">&quot;yes&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">address</span> <span class="hljs-attr">domain</span>=<span class="hljs-string">&quot;0x0000&quot;</span> <span class="hljs-attr">bus</span>=<span class="hljs-string">&quot;0x03&quot;</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;0x00&quot;</span> <span class="hljs-attr">function</span>=<span class="hljs-string">&quot;0x0&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rom</span> <span class="hljs-attr">file</span>=<span class="hljs-string">&quot;/usr/share/vgabios/vbios.rom&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">address</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;pci&quot;</span> <span class="hljs-attr">domain</span>=<span class="hljs-string">&quot;0x0000&quot;</span> <span class="hljs-attr">bus</span>=<span class="hljs-string">&quot;0x06&quot;</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;0x00&quot;</span> <span class="hljs-attr">function</span>=<span class="hljs-string">&quot;0x0&quot;</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hostdev</span>&gt;</span>
+</code></pre>
+<p>Tambahkan lokasi vbios nya di antara <strong>&lt;source&gt;</strong> dan <strong>&lt;address&gt;</strong>, apply.</p>
+<br>
+<br>
+<h3>Finish</h3>
+<p>Coba jalankan, jangan lupa ucap bismillah</p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+    </footer>
+</body>
+
+</html>
