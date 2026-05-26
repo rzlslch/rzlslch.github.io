@@ -283,6 +283,15 @@ figure {
     margin: 0;
 }
 
+blockquote {
+    border-left: 5px solid #ccc;
+    margin: 1.5em 10px;
+    /* Space outside the quote */
+    padding: 0 10px;
+    /* Space between the line and the text */
+    background: #fff;
+}
+
 pre code.hljs {
     display: block;
     overflow-x: auto;
