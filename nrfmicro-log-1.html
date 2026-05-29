@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+        nrfmicro log 1
+        
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about/">about</a>
+        <a href="/resume/">resume</a>
+        <a href="/contact/">contact</a>
+    </div>
+</div>
+    <div class="title">
+        nrfmicro log 1
+        <div class="date stat-desc">
+            <span class="category-code">code</span>
+            <span>⚬</span>
+            <span>29 May 2026</span>
+        </div>
+    </div>
+    <div class="content">
+        <p><img src="/assets/img/nrfmicrorc.jpg" alt="nrfmicro"></p>
+<p>Jadi kapan hari itu saya mulai coba-coba berhobi lagi. Setelah ndesain panel buat AIO, saya jadi suka desain-desain lagi. Terus waktu ketemu temen, ngobrol-ngobrol, kepikiran lah buat ndesain sesuatu lagi. Mau ndesain mobil-mobilan. Awalnya mau ndesain mobil-mobilan kecil aja yang bisa dibongkar pasang. Lah waktu ndesain, tiba-tiba kepikiran gimana kalo bikin rc (remote control) sekalian.</p>
+<p>Nawaitu bikin rc. Saya pelajarin komponen-komponen rc itu apa aja. RC secara general terdiri dari 2 komponen utama, Remot nya, sama kendaraan nya. Wah repot juga ya kudu bikin remot segala, pikir saya waktu itu. Gimana kalo remot nya pake hp aja, aplikasi gitu, terus kendaraan nya pake bluetooth. Boleh sih.</p>
+<p>Akhirnya saya putuskanlah pake nrfmicro/nicenano/supermicro. Dia itu gabungan nrf52840 + pro micro. Yaudah, coba-coba saya beli, sekalian sg90 buat servo/setir nya. Dan motor driver L9110 buat ngontrol kecepatan dinamo nya nanti.</p>
+<p>Nrfmicro ini bisa dijalankan pake 3.7v, jadi nanti rencananya saya mau pakai baterai lipo aja. Tapi ternyata servo dan motor driver nya minimal pake 5v. Output dari nrfmicro sendiri (VCC, RAW) itu mentok 3.3v. Nah itu saya coba konek kan ke power nya servo, ga jalan. Ntah saya salah pin digital controller nya, atau tegangan nya ga ngangkat. Ga tau, ga bisa mastiin. Makanya ini saya pause dulu risetnya soalnya saya masih pesen step up 5v.</p>
+<p>Ntar kalo uda berhasil ngeprogram kontroler nya, baru saya mulai desain chassis.</p>
+<p>Udah gitu aja dulu</p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+    </footer>
+</body>
+
+</html>
