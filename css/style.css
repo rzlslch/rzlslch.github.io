@@ -25,8 +25,8 @@ h2 {
 .date,
 .category {
     /* font-family: "IBM Plex Mono", monospace; */
-    font-size: 0.85rem;
-    letter-spacing: -0.5px;
+    /* font-size: 0.85rem; */
+    /* letter-spacing: -0.5px; */
 }
 
 nav a {
@@ -520,42 +520,49 @@ a.btn-emboss.full {
     /* or center */
 }
 
-.category-blog,
-.category-code,
-.category-kbd,
-.category-vape,
-.category-linux {
+.category {
     /* width: 100%; */
     /* display: block; */
     padding: 4px 10px;
     margin-bottom: 4px;
-    border-radius: 20px;
+    border-radius: 4px;
+    color: #70747b;
 }
 
+/* .category-blog:before,
+.category-code::before,
+.category-kbd::before,
+.category-vape::before,
+.category-linux::before {
+    content: "#";
+} */
+
 .category-blog {
-    background-color: #e8ebe4;
-    color: #70747b;
+    background-color: #b7ded2;
+    /* color: #70747b; */
 }
 
 .category-kbd {
-    background-color: #f3e9e7;
-    color: #70747b;
+    background-color: #f6a6b2;
+    /* color: #70747b; */
 }
 
 .category-code {
-    background-color: #f5e7ee;
-    color: #70747b;
+    background-color: #f7c297;
+    /* color: #70747b; */
 }
 
 .category-vape {
-    background-color: #eeeef4;
-    color: #70747b;
+    background-color: #ffecb8;
+    /* color: #70747b; */
 }
 
 .category-linux {
-    background-color: #70747b;
-    color: #fbf6fa;
+    background-color: #90d2d8;
+    /* color: #efefef; */
 }
+
+/* unused color 14a8d1 */
 
 .post-title {
     border-bottom: 1px solid #e4e4e4;
