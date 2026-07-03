@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>
+        
+        Cara Pilih Distro Linux
+        
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <section>
+        <div class="center_page">
+            <div class="post">
+    <!-- <div class="header">
+    <a href="/">@rzlslch</a>
+</div> -->
+<div class="header">
+    <div class="menutitle"><a href="/">@rzlslch</a></div>
+    <div class="menuother">
+        <a href="/about/">about</a>
+        <a href="/resume/">resume</a>
+        <a href="/contact/">contact</a>
+    </div>
+</div>
+    <div class="title">
+        Cara Pilih Distro Linux
+        <div class="date stat-desc">
+            <span class="category category-linux">linux</span>
+            <span>⚬</span>
+            <span>03 July 2026</span>
+        </div>
+    </div>
+    <div class="content">
+        <p>Saya lihat akhir-akhir ini linux tuh semakin ramai. Orang-orang mulai ngelirik linux sebagai alternatif sistem operasi yang bisa dipakai sehari-hari. Dan kadang orang jadi bingung, mau pake distro apa?</p>
+<p>Nah, masalah pertama yang dijumpai ketika mau menggunakan linux adalah:</p>
+<pre><code>Linux (atau lebih tepatnya distro) yang mana? 
+</code></pre>
+<p>Newbie maupun Veteran hampir pasti menghadapi masalah ini.</p>
+<br>
+<br>
+<h3>1. Newbie (Belum pernah pake linux sama sekali)</h3>
+<p><strong>Linux Mint</strong>.</p>
+<p>Udah.</p>
+<p>Kenapa kok nda ubuntu? Sepengalaman saya, linux mint jauh lebih bebas error daripada ubuntu. Ga tau ya, ubuntu saya pake beberapa bulan ada aja ulahnya. Anekdotal, tapi ya, pakai aja linux mint.</p>
+<h3>2. Veteran</h3>
+<p>Tujuan nya mau apa dulu. Distro rata-rata sama aja. Yang bikin beda itu ideologi nya. Tapi memang ada beberapa distro yang unik dan bikin tangan gatel buat nyoba-nyoba. Nah untuk veteran, beberapa distro berikut ini malah bisa jadi racun buat menantang ego.</p>
+<ol>
+<li><strong>Gentoo</strong>. Source based distro. Jadi package nya nanti harus build dari source. Selain itu, user harus nentuin USE flag. Apa itu USE flag? USE flag sendiri adalah cara package manager gentoo untuk menentukan opsi build. Bisa dicari sendiri nanti.</li>
+<li><strong>Nixos</strong>. Declarative distro. Jadi package dalam sistem operasi kita harus ditentukan seperti menentukan resep suatu masakan. Dan menggunakan bahasa nix. Karena itu distro ini reproducible di berbagai machine. Apa maksudnya? Jadi kalo mau install sistem operasi dan isi-isinya yang sama antar satu mesin ke mesin lain, bisa pake nixos ini.</li>
+<li><strong>Exherbo</strong>. Source based, tapi minim dokumentasi. Karena tujuan distro ini adalah untuk menjustifikasi kebodohan, slogan nya begitu. Coba aja sendiri.</li>
+<li><strong>Gobolinux</strong>. Distro yang memiliki sistem hierarki yang beda dengan normalnya distro linux. Aplikasi biasa nya ada di /usr/bin atau /usr/share/bin, disini ada di /Programs. Contohnya, nano, bukan di /usr/bin/nano, tapi di /Programs/Nano/8.3. Menarik?</li>
+</ol>
+<h3>3. No-nonsense busy middle age guy</h3>
+<p>Ini berdasarkan pengalaman saya sendiri. Semakin kesini, pengennya komputer ya just work. Saya pake komputer buat njalankan aplikasi, bukan njalankan sistem operasi. Jadi disini saya akan bahas metode nya buat milih distro, bukan distro apa. Setiap orang bisa ketemu kesimpulan yang berbeda, tergantung kebutuhan.</p>
+<p>Metode untuk memilih distro seperti apa yang saya terapkan untuk memenuhi kebutuhan saya?</p>
+<ol>
+<li><strong>Availability</strong>. Seluruh aplikasi yang mau saya gunakan harus bisa dijalankan/diinstall dengan relatif mudah.</li>
+<li><strong>Reliability</strong>. Seluruh sistem yang terintegrasi (termasuk desktop) harus reliable, maksudnya minim bug dan stay out of the way, saya butuh njalankan aplikasi, bukan main-main sama distro nya.</li>
+<li><strong>Hardware Support</strong>. Ini penting sih, karena ini nentuin bisa atau nda distro nya dipake sehari-hari. Bukannya semua distro sama aja, kan pake kernel yang sama? Belum tentu, distro tertentu bisa install driver tinggal klik, yang lain harus setup sana-sini.</li>
+</ol>
+<p>Jadi gimana caranya?</p>
+<p>Pertama, untuk availability. Saya ngelist dulu aplikasi apa yang nanti bakal saya pake. Yang biasa saya tekankan itu aplikasi third party yang biasanya ga ada di main repo. Contohnya ya</p>
+<pre><code class="hljs">free download manager
+proton vpn
+bruno/insomnia
+docker desktop
+arduino ide
+terabox
+dll
+</code></pre>
+<p>Saya bakal riset dulu gimana cara install aplikasi-aplikasi tersebut di distro-distro mainstream. Yang ga bisa memenuhi kebutuhan itu saya skip</p>
+<p>Terus reliability. Disini biasanya saya bakal langsung masuk ke pemilihan desktop nya, karena biasanya yang paling mencolok kalo ada bug itu desktop. Misal, saya mau pake gnome aja biar ga neko-neko, ya saya cari tahu desktop gnome di distro-distro mainstream seperti apa. Biasanya cari review atau paling mentok coba dulu di virtual machine. Atau kalo pengen pake KDE Plasma misal, cari distro yang KDE nya minim bug, kayak Kubuntu misal. Saya nyoba Plasma di archlinux isinya error bug error bug.</p>
+<p>Yang ketiga, hardware support. Biasanya, yang paling pengaruh itu GPU. Nah kebetulan saya pake tim merah full, jadi saya ga terlalu ambil pusing disini. Tapi waktu dulu saya pake Nvidia, saya cari dulu jenis GPU saya, terus cari-cari di forum tentang GPU yang saya pake. Cara carinya adalah</p>
+<pre><code class="hljs">nama distro nvidia xxxx problem
+</code></pre>
+<p>Kalo keluar problem yang critical, saya skip, lanjut ke distro lainnya. Atau</p>
+<pre><code class="hljs">nama distro steam nvidia xxx trouble
+</code></pre>
+<p>Sekarang saya pake archlinux. Availability teratasi dengan AUR. Gimana dengan AUR attack? Tbh I don’t care. Saya tinggal baca pkgbuild, nda asal install. Reliability, surprisingly is non-issue di archlinux. Sudah hampir 2 tahun saya pake arch (kayaknya) dan nda ada issue apapun. Soale emang nda saya otak-atik lagi. Hardware support pun oke sih.</p>
+<p>Sebelumnya, saya pake linux mint xfce, waktu masih pake nvidia. Cuman waktu itu ada kesusahan install aplikasi apa gitu lupa. Non-issue juga. Baru setelah build pc baru pake tim merah, install ulang ke archlinux buat AUR.</p>
+<p>Bisa jadi nanti kesimpulannya fedora, atau nobara, atau bazzite, atau debian. Yang penting bisa memenuhi kebutuhan.</p>
+
+
+        <div class="back">
+            <a href="/">Kembali ke halaman utama</a>
+        </div>
+    </div>
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://rzlslch-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+    <div class="middle-footer">
+        
+    </div>
+</div>
+    </footer>
+</body>
+
+</html>

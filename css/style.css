@@ -6,9 +6,10 @@ body {
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
     -ms-text-size-adjust: none;
-    background-color: #fbf6fa;
+    /* background-color: #fbf6fa; */
     /* background-color: #EEECE7; */
     /* background-color: #d7d8d7; */
+    background-color: #f9f9f8;
     color: #555555;
     font-family: "Inter", sans-serif;
     font-size: 18px;
@@ -150,10 +151,21 @@ body .home td {
 }
 
 body .home .year {
-    padding-top: 1.8rem;
-    padding-bottom: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: xx-large;
+    font-weight: 900;
+    border: 1px solid #e4e4e4;
+    padding: 0.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    color: #3a352e;
+    background: repeating-linear-gradient(
+        135deg,
+        #fbf1e6,
+        #fbf1e6 5px,
+        #edd2b3 5px,
+        #edd2b3 10px
+    );
 }
 
 .content {
@@ -235,11 +247,6 @@ body .post .title {
     body .post .title .date {
         font-size: 1.2rem;
     }
-
-    body .home .year {
-        font-size: 1.8rem;
-        padding-top: 1.8rem;
-    }
 }
 
 @media (min-width: 961px) {
@@ -260,11 +267,6 @@ body .post .title {
     /* hi-res laptops and desktops */
     body {
         font-size: 1.2em;
-    }
-
-    body .home .year {
-        font-size: 1.8rem;
-        padding-top: 1.8rem;
     }
 
     nav,
@@ -565,9 +567,15 @@ a.btn-emboss.full {
 /* unused color 14a8d1 */
 
 .post-title {
-    border-bottom: 1px solid #e4e4e4;
-    padding: 1rem 0;
-    padding-bottom: 1.5rem;
+    /* border-bottom: 1px solid #e4e4e4; */
+    border: 1px solid #e4e4e4;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #eef1f4;
+    box-shadow: 0.5rem 0.5rem 0px #a8b4bd;
+    /* background-color: #f5f0f2;
+    box-shadow: 0.4rem 0.4rem 0px #c9b8bf; */
 }
 
 .post-title a,
@@ -580,8 +588,19 @@ a.btn-emboss.full {
     text-decoration: none;
 }
 
+.post-title .title {
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.post-title .description {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
 .stat-desc {
     padding-top: 0.5rem;
-    font-size: smaller;
+    font-size: 0.7rem;
     color: #b4b4b4;
+    padding-bottom: 0.5rem;
 }
