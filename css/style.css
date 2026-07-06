@@ -38,10 +38,10 @@ nav a {
 body code {
     display: inline-block;
     word-wrap: break-word;
-    /*white-space: pre-wrap !important;*/
+    white-space: pre-wrap !important;
     line-height: 150%;
     padding: 0 2px;
-    /* background-color: #e4e4e4; */
+    background-color: #e4e4e4;
     color: #08680e;
 }
 
